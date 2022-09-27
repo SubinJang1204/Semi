@@ -232,11 +232,11 @@ font-family: 'Gowun Dodum', sans-serif;
 <div class="best">
 <img src="images/prd3.png">
 </div>
-
+vv '
 </div>
 
 <div class="event_wrap" style="margin-top:50px;">
-<h3 style="color:#8e8e8e;font-weight:400;">EVENT</h3>
+<h3 style="color:#8e8e8e;font-weight:401;">EVENT</h3>
 <div class="event">
 <img src="images/prd1.png">
 </div>
