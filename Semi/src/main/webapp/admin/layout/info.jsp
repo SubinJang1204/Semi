@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
 <style>
@@ -30,15 +31,17 @@ li a:hover:not(.active) {
     background-color: #555;
     color: white;
 }
+
 </style>
 <body>
-
+<div >
 <ul>
       <li><a class="active" href="#home">Home</a></li>
-      <li><a href="#news">News</a></li>
+      <li><a href="index.jsp?main=sangpum/sangpumlist.jsp">상품리스트</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#about">About</a></li>
-    </ul>
+</ul>
 
+</div>
 </body>
 </html>

@@ -16,40 +16,30 @@ border: 0px solid gray;
 position: absolute;
 
 }
-div.title{
-width: 100%;
-height: 80px;
-line-height:  80px;
-font-size: 30px;
-text-align: center;
-}
-div.menu{
+/* div.menu{
 width: 100%;
 height: 80px;
 line-height: 80px;
 font-size: 18pt;
 text-align: center;
 top: 120px;
-}
+} */
 
 div.info{
 width: 170px;
-height: 200px;
+height: 100%;
 line-height: 10px;
 font-size: 15pt;
-left: 30px;
-top: 300px;
-padding: 20px 10px;
-border: 5px groove gray;
 border-radius: 30px;
+top: 100px;
 
 }
 div.main{
 width: 800px;
-height: 700px;
+height: 500px;
 font-size: 12pt;
 left: 230px;
-top: 250px;
+top: 100px;
 }
 a,a:hover{
 color: black;
@@ -71,9 +61,7 @@ if(request.getParameter("main")!=null){
 %>
 <body>
 
-<div class="layout title">
-	<jsp:include page="layout/title.jsp"/>
-</div>
+
 <div class="layout menu">
 	<jsp:include page="layout/menu.jsp"/>
 </div>
