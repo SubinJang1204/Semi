@@ -14,6 +14,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
+<style>
+.photo{
+width: 50px;
+}
+
+</style>
+
+
 <%
 ShopDao dao=new ShopDao();
 List<ShopDto> list=dao.getAllSangpums();
@@ -21,7 +29,7 @@ NumberFormat nf=NumberFormat.getCurrencyInstance();
 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd ");
 %>
 <body>
-  
+  <Resources allowLinking="true" />
   <h2>상품리스트</h2>
   <ul class="nav nav-tabs" style="width: 700px;">
     <li class="active"><a data-toggle="tab" href="#home">전체</a></li>
@@ -51,7 +59,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd ");
       		<td><a style="color: black; cursor: pointer;"><%=dto.getSangpum() %></a></td>
       		<td><%=dto.getCategory() %></td>
       		<td>
-      		<img alt="" src="#">
+      		<img alt="" src="https://www.osulloc.com/upload/kr/ko/adminImage/HB/XA/20211026141423508CU.png" class="photo">
       		</td>
       		<td><%=nf.format(dto.getPrice()) %></td>
       		
@@ -89,7 +97,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd ");
       		<td><a style="color: black; cursor: pointer;"><%=dto.getSangpum() %></a></td>
       		<td><%=dto.getCategory() %></td>
       		<td>
-      		<img alt="" src="#">
+      		<img alt="" src="sangpumimg/<%=photo%>" class="photo">
       		</td>
       		<td><%=nf.format(dto.getPrice()) %></td>
       		
@@ -121,7 +129,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd ");
       		<td><a style="color: black; cursor: pointer;"><%=dto.getSangpum() %></a></td>
       		<td><%=dto.getCategory() %></td>
       		<td>
-      		<img alt="" src="#">
+      		<img alt="" src="sangpumimg/<%=photo%>">
       		</td>
       		<td><%=nf.format(dto.getPrice()) %></td>
       		
@@ -152,7 +160,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd ");
       		<td><a style="color: black; cursor: pointer;"><%=dto.getSangpum() %></a></td>
       		<td><%=dto.getCategory() %></td>
       		<td>
-      		<img alt="" src="#">
+      		<img alt="" src="sangpumimg/<%=photo%>">
       		</td>
       		<td><%=nf.format(dto.getPrice()) %></td>
       		

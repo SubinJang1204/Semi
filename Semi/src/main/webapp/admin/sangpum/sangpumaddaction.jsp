@@ -15,10 +15,11 @@
 <body>
 
 <%
-String uploadPath=getServletContext().getRealPath("shopsave1");
+request.setCharacterEncoding("utf-8");
+String uploadPath=getServletContext().getRealPath("/sangpumimg");
 System.out.println(uploadPath);
 
-int uploadSize=1024*1024*2; //2mb
+int uploadSize=1024*1024*4; //2mb
 
 MultipartRequest multi=null;
 
@@ -46,7 +47,7 @@ dto.setSangpum(sangpum);
 dao.insertShop(dto);
 
 //방명록 목록 이동
-response.sendRedirect("../index.jsp?main=sangpumlist.jsp");
+response.sendRedirect("../index.jsp?main=sangpum/sangpumlist.jsp");
 
 }catch(Exception e){
 	
