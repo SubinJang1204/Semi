@@ -111,7 +111,47 @@ public int getTotalCount() {
 		return list;
 	}
 
-	//전체 갯수 반환
+	//전체
+	//전체데이터
+	
+		public List<ShopDto> getAllSangpums(){
+			
+			List<ShopDto> list=new ArrayList<>();
+			
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			
+			String sql="select * from shop order by shopnum desc";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				rs=pstmt.executeQuery();
+				
+				while(rs.next()) {
+					
+					ShopDto dto=new ShopDto();
+					
+					dto.setShopnum(rs.getString("shopnum"));
+					dto.setSangpum(rs.getString("sangpum"));
+					dto.setCategory(rs.getString("category"));
+					dto.setIpgoday(rs.getString("ipgoday"));
+					dto.setPrice(rs.getInt("price"));
+					dto.setPhoto(rs.getString("photo"));
+					
+					
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				db.dbClose(rs, pstmt, conn);
+			}
+			
+			return list;
+			
+		}
 	
 	//onedata
 	public ShopDto getData(String shopnum) {

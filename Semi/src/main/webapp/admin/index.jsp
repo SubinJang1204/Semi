@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,6 +15,16 @@
 		<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
+    <%
+
+String mainPage="admin/index.jsp";
+
+//url을 통해서 main값을 읽어서 메인페이지에 출력한다
+if(request.getParameter("main")!=null){
+	mainPage=request.getParameter("main");
+}
+	
+%>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
@@ -57,7 +69,7 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="sangpumlist.jsp">상품 추가 / 삭제</a>
+                                    <a class="nav-link" href="index.jsp?main=sangpumlist.jsp">상품 추가 / 삭제</a>
                                      
                                 </nav>
                             </div>
@@ -131,6 +143,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
+                    <jsp:include page="<%=mainPage %>"/>
                         <h1 class="mt-4">Dashboard</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
