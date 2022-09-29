@@ -21,7 +21,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
-    <%
+<%
 ShopDao dao=new ShopDao();
 List<ShopDto> list=dao.getAllSangpums();
 NumberFormat nf=NumberFormat.getCurrencyInstance();

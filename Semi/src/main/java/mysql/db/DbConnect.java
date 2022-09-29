@@ -12,7 +12,7 @@ public class DbConnect {
 	//mysql 드라이버
 	static final String MYSQLDRIVER="com.mysql.jdbc.Driver";
 	//url
-	static  final String MYSQL_URL="jdbc:mysql://localhost:3306/sist";
+	static  final String MYSQL_URL="jdbc:mysql://webservice.cjx2bkuefrkt.ap-northeast-2.rds.amazonaws.com:3306/webservice";
 	
 	//오라클 드라이버.. 생성자..18버전은 생략 가능
 	public DbConnect() {
@@ -33,7 +33,7 @@ public class DbConnect {
 		Connection conn=null;
 		
 		try {
-			conn=DriverManager.getConnection(MYSQL_URL, "dragon", "1234");
+			conn=DriverManager.getConnection(MYSQL_URL, "jinadmin", "zxcvbnmlk0908");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("오라클 연결 실패... 계정 틀렸는 지 확인"+e.getMessage());
