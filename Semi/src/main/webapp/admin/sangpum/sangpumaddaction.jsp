@@ -13,9 +13,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<Resources allowLinking="true" />
 <%
-request.setCharacterEncoding("utf-8");
+
 String uploadPath=getServletContext().getRealPath("/sangpumimg");
 System.out.println(uploadPath);
 

@@ -29,7 +29,7 @@ NumberFormat nf=NumberFormat.getCurrencyInstance();
 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd ");
 %>
 <body>
-  <Resources allowLinking="true" />
+
   <h2>상품리스트</h2>
   <ul class="nav nav-tabs" style="width: 700px;">
     <li class="active"><a data-toggle="tab" href="#home">전체</a></li>
@@ -59,7 +59,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd ");
       		<td><a style="color: black; cursor: pointer;"><%=dto.getSangpum() %></a></td>
       		<td><%=dto.getCategory() %></td>
       		<td>
-      		<img alt="" src="https://www.osulloc.com/upload/kr/ko/adminImage/HB/XA/20211026141423508CU.png" class="photo">
+      		<img alt="" src="#" class="photo">
       		</td>
       		<td><%=nf.format(dto.getPrice()) %></td>
       		
