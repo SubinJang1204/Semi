@@ -44,19 +44,49 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
       <p>
-      <table style="width: 650px;">
+    <table style="width: 700px;">
 	<tr>
 <%
 	NumberFormat nf=NumberFormat.getNumberInstance();
 		int i=1;
-		for(ShopDto dto:list){
 		
+		for(ShopDto dto:list){
+			if(dto.getCategory().equals("티 제품")){
 			
 			String photo=dto.getPhoto();
-			
+			int sale=20;
 			
 			%>
 			<td style="padding-right: 50px; padding-bottom: 10px;">
+				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">
+					
+					
+					<img src="images2/<%=photo%>" class="photo" style="width: 450px;">
+					<br>
+					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span><br>
+					<%
+					int price=(int)(dto.getPrice()+(dto.getPrice()*(sale/100.0)));
+					%>	
+						
+					
+					<div style="color: black; font-size: 25px;">
+					<b style="color:hotpink; font-size: 25px;"><%=sale %>%</b>&nbsp;
+					<b><%=nf.format(dto.getPrice()) %>원</b>&nbsp;
+					<strike style="color: darkgray; font-size: 22px;"><%=nf.format(price) %>원</strike> 
+					</div></span>
+				</a>
+			</td>
+			<%
+			if((i+3)%3==0){%>
+				</tr><tr>
+			<% }
+			i++;
+			
+		 }else{
+		 String photo=dto.getPhoto();
+		
+		 %>
+			 	<td style="padding-right: 50px; padding-bottom: 10px;">
 				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">
 					
 					
@@ -82,6 +112,11 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 		 
 	}
 	%>
+    
+      
+		 <%}
+	
+	%>
     </tr>
 </table>
       
@@ -89,18 +124,48 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
     </div>
     <div id="menu1" class="tab-pane fade">
       <p>
-        <table style="width: 650px;">
+         <table style="width: 700px;">
 	<tr>
 <%
-		 i=1;
-		for(ShopDto dto:alist){
+i=1;
 		
+		for(ShopDto dto:alist){
+			if(dto.getCategory().equals("티 제품")){
 			
 			String photo=dto.getPhoto();
-			
+			int sale=20;
 			
 			%>
 			<td style="padding-right: 50px; padding-bottom: 10px;">
+				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">
+					
+					
+					<img src="images2/<%=photo%>" class="photo" style="width: 450px;">
+					<br>
+					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span><br>
+					<%
+					int price=(int)(dto.getPrice()+(dto.getPrice()*(sale/100.0)));
+					%>	
+						
+					
+					<div style="color: black; font-size: 25px;">
+					<b style="color:hotpink; font-size: 25px;"><%=sale %>%</b>&nbsp;
+					<b><%=nf.format(dto.getPrice()) %>원</b>&nbsp;
+					<strike style="color: darkgray; font-size: 22px;"><%=nf.format(price) %>원</strike> 
+					</div></span>
+				</a>
+			</td>
+			<%
+			if((i+3)%3==0){%>
+				</tr><tr>
+			<% }
+			i++;
+			
+		 }else{
+		 String photo=dto.getPhoto();
+		
+		 %>
+			 	<td style="padding-right: 50px; padding-bottom: 10px;">
 				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">
 					
 					
@@ -125,6 +190,11 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 			
 		 
 	}
+	%>
+    
+      
+		 <%}
+	
 	%>
     </tr>
 </table>
@@ -134,18 +204,48 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
     <div id="menu2" class="tab-pane fade">
       
       <p>
-        <table style="width: 650px;">
+       <table style="width: 700px;">
 	<tr>
 <%
-		 i=1;
-		for(ShopDto dto:dlist){
+	i=1;
 		
+		for(ShopDto dto:dlist){
+			if(dto.getCategory().equals("티 제품")){
 			
 			String photo=dto.getPhoto();
-			
+			int sale=20;
 			
 			%>
 			<td style="padding-right: 50px; padding-bottom: 10px;">
+				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">
+					
+					
+					<img src="images2/<%=photo%>" class="photo" style="width: 450px;">
+					<br>
+					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span><br>
+					<%
+					int price=(int)(dto.getPrice()+(dto.getPrice()*(sale/100.0)));
+					%>	
+						
+					
+					<div style="color: black; font-size: 25px;">
+					<b style="color:hotpink; font-size: 25px;"><%=sale %>%</b>&nbsp;
+					<b><%=nf.format(dto.getPrice()) %>원</b>&nbsp;
+					<strike style="color: darkgray; font-size: 22px;"><%=nf.format(price) %>원</strike> 
+					</div></span>
+				</a>
+			</td>
+			<%
+			if((i+3)%3==0){%>
+				</tr><tr>
+			<% }
+			i++;
+			
+		 }else{
+		 String photo=dto.getPhoto();
+		
+		 %>
+			 	<td style="padding-right: 50px; padding-bottom: 10px;">
 				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">
 					
 					
@@ -170,6 +270,11 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 			
 		 
 	}
+	%>
+    
+      
+		 <%}
+	
 	%>
     </tr>
 </table>

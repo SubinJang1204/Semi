@@ -332,4 +332,39 @@ public void deleteCart(String idx) {
 		db.dbClose(pstmt, conn);
 	}
 }
+
+public List<ShopDto> getSearchSang(String sangpum){
+	List<ShopDto> list=new Vector<>();
+	Connection conn=db.getConnection();
+	PreparedStatement pstmt=null;
+	ResultSet rs=null;
+	
+	String sql="select * from shop where sangpum like ? order by num desc";
+	
+	try {
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setString(1, "%"+sangpum+"%");
+		
+		rs=pstmt.executeQuery();
+		
+		while(rs.next()) {
+			ShopDto dto=new ShopDto();
+			
+			dto.setShopnum(rs.getString("shopnum"));
+			dto.setCategory(rs.getString("category"));
+			dto.setPhoto(rs.getString("photo"));
+			dto.setPrice(rs.getInt("price"));
+			dto.setSangpum(rs.getString("sangpum"));
+			dto.setIpgoday(rs.getString("ipgoday"));
+			
+			list.add(dto);
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		db.dbClose(rs, pstmt, conn);
+	}
+	return list;
+}
 }
