@@ -21,7 +21,7 @@ if(loginok==null){
 	<%
 }else{
 	%>
-	<jsp:include page="logoutform.jsp"/>
+	<jsp:include page="logoutaction.jsp"/>
 	<%
 }
 %>

@@ -169,7 +169,7 @@ font-family: 'Gowun Dodum', sans-serif;
 </style>
 </head>
 <body>
-
+<center>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -232,7 +232,7 @@ font-family: 'Gowun Dodum', sans-serif;
 <div class="best">
 <img src="images/prd3.png">
 </div>
-vv '
+
 </div>
 
 <div class="event_wrap" style="margin-top:50px;">
@@ -257,6 +257,6 @@ vv '
   </a><br><br>
   <p>Team 3 <a href="" data-toggle="tooltip" title="Visit w3schools">SemiProject</a></p> 
 </footer>
-
+</center>
 </body>
 </html>

@@ -219,7 +219,7 @@ public MemberDto getMember(String num) {
 			dto.setNum(rs.getString("num"));
 			dto.setName(rs.getString("name"));
 			dto.setId(rs.getString("id"));
-			
+			dto.setPass(rs.getString("pass"));
 			dto.setHp(rs.getString("hp"));
 			dto.setAddr(rs.getString("addr"));
 			dto.setEmail(rs.getString("email"));	

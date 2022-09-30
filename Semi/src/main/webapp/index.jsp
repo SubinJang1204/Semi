@@ -11,6 +11,10 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <style type="text/css">
+*{
+font-family: 'Gowun Dodum', sans-serif;
+}
+
 div.layout{
 position:absolute;
 }
@@ -29,7 +33,7 @@ width:1920px;
 height:600px;
 font-size:12pt;
 margin-top:-70px;
-text-align:center;
+
 z-index:-1;
 }
 

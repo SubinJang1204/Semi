@@ -51,20 +51,7 @@ int cartSize=sdao.getCartList(myid).size();
   border:1px solid #FF7BAC;
   color:#FF7BAC;
   }
-  input {
-    background-repeat: no-repeat;
-    border: 1px solid #ccc;
-    padding: 5px 5px;
-    width: 120px;
-}
-  input::-webkit-input-placeholder{
-  background-image: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-256.png) ;
-  background-size: contain;
-  background-position:  1px center;
-  background-repeat: no-repeat;
-  text-align: center;
-  text-indent: 0;
-}
+  
   </style>
 </head>
 <body>
@@ -85,18 +72,42 @@ int cartSize=sdao.getCartList(myid).size();
       
       <li><a href="" id="hov" style="margin-right:5px;">Best</a></li>
       <li><a href="" id="hov">Event</a></li>
-     <%--  <%
+   <%
 if(loginok==null){
-	%> --%>
+	%> 
 	
-	 
+    <li  style="margin-left:883px;"><a href="index.jsp?main=login/loginform.jsp"><span class="glyphicon glyphicon-log-in" id="hov" style="font-size:16pt;top:-1px"></span></a></li>
+    <li style="margin-top:-35px;">
      
+     <form class="navbar-form navbar-left" action="">
+     
+        <input type="text" class="form-control" placeholder="Enter your keyword" style="width:200px;border-radius:5px;">
+ 
+      <button type="submit" class="btn btn-default btn-sm btnsearch" style="">Search</button>
+    </form>
+    </li>
+    <%
+	//로그인 중이면
+}else{ 
+	%>
+	
+	<%
+					//admin 계정만 볼 수 있음
+					if(loginok!=null && myid.equals("admin")){
+						
+						%>
+						<li style="position:relative;left:780px;"><a href="index.jsp?main=manager/manager_index.jsp"><span class="glyphicon glyphicon-cog" id="hov" style="font-size:16pt;top:-1px"></span></a></li>
+						<%
+					}
+						%>
+	
+	<li style="margin-left:780px;"><a href=""><span class="glyphicon glyphicon-user" id="hov" style="font-size:16pt;top:-1px"></span></a></li>
   
-    
-    <li style="margin-left:780px;"><a href="login/loginform.jsp"><span class="	glyphicon glyphicon-user" id="hov" style="font-size:16pt;top:-1px"></span></a></li>
-    <li ><a href="login/loginform.jsp"><span class="	glyphicon glyphicon-lock" id="hov" style="font-size:16pt;top:-1px"><div style="color:white;background-color:#FF7BAC;
+    <li><a href=""><span class="	glyphicon glyphicon-lock" id="hov" style="font-size:16pt;top:-1px"><div style="color:white;background-color:#FF7BAC;
    width:20px;height:20px;border-radius:100%;position:relative;top:-23px;left:15px;font-size:15px;line-height:20px;">0</div></span></a></li>
-    <li><a href="login/loginform.jsp"><span class="glyphicon glyphicon-log-in" id="hov" style="font-size:16pt;top:-1px"></span></a></li>
+   
+   <li><a href="login/logoutaction.jsp"><span class="glyphicon glyphicon-log-in" id="hov" style="font-size:16pt;top:-1px"></span></a></li>
+   
     <li style="margin-top:-35px;">
      
      <form class="navbar-form navbar-left" action="">
@@ -107,19 +118,9 @@ if(loginok==null){
     </form>
     
     </li>
-     <%--  <%
-	//로그인 중이면
-}else{ 
-	%>
-	<div style="margin-top:-85px;">
-	<b style="font-size:12pt"><%=name %>님 로그인 중...!</b>
-	<span class="glyphicon glyphicon-shopping-cart" style="color:black;font-size:17px;"><%=cartSize %></span>
-	<button type="button" class="btn btn-danger" style="width:100px"
-	onclick="location.href='login/logoutaction.jsp'">로그아웃</button>
-	</div>
 	<%
 }
-%> --%>
+%> 
     </ul>
   </div>
 </nav>
