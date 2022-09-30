@@ -15,40 +15,37 @@
 <body>
 
 <%
-
-String uploadPath=getServletContext().getRealPath("/sangpumimg");
+String uploadPath=getServletContext().getRealPath("sangpumimg");
 System.out.println(uploadPath);
 
-int uploadSize=1024*1024*4; //2mb
+int uploadSize=1024*1024*4;
 
 MultipartRequest multi=null;
 
 try{
-multi=new MultipartRequest(request,uploadPath,uploadSize,"utf-8",new DefaultFileRenamePolicy());
-
-//주의:request가 아닌 multi로 모든 폼데이터 읽는다
-String category=multi.getParameter("category");
-int price=Integer.parseInt(multi.getParameter("price"));
-String sangpum=multi.getParameter("sangpum");
-String ipgoday=multi.getParameter("ipgoday");
-
-String photo=multi.getFilesystemName("photo");
-
-//dao
-ShopDao dao=new ShopDao();
-//dto에 저장
-ShopDto dto=new ShopDto();
-dto.setCategory(category);
-dto.setIpgoday(ipgoday);
-dto.setPhoto(photo);
-dto.setPrice(price);
-dto.setSangpum(sangpum);
-
-dao.insertShop(dto);
-
-//방명록 목록 이동
-response.sendRedirect("../index.jsp?main=sangpum/sangpumlist.jsp");
-
+	multi=new MultipartRequest(request,uploadPath,uploadSize,"utf-8",new DefaultFileRenamePolicy());
+	
+	String category=multi.getParameter("category");
+	int price=Integer.parseInt(multi.getParameter("price"));
+	String sangpum=multi.getParameter("sangpum");
+	String ipgoday=multi.getParameter("ipgoday");
+	
+	String photo=multi.getFilesystemName("photo");
+	
+	ShopDao dao=new ShopDao();
+	ShopDto dto=new ShopDto();
+	
+	dto.setCategory(category);
+	dto.setSangpum(sangpum);
+	dto.setPhoto(photo);
+	dto.setPrice(price);
+	dto.setIpgoday(ipgoday);
+	
+	
+	dao.insertShop(dto);
+	
+	response.sendRedirect("../index.jsp?main=sangpum/sangpumlist.jsp");
+	
 }catch(Exception e){
 	
 }
