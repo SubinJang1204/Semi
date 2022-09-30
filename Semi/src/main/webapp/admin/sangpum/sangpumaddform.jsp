@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<Resources allowLinking="true" />
+
 <div>
 	<form action="sangpum/sangpumaddaction.jsp" method="post" enctype="multipart/form-data">
 		<table class="table table-bordered" style="width: 600px;">

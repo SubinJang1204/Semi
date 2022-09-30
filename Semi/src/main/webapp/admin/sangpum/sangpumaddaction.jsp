@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<Resources allowLinking="true" />
+
 <%
 
 String uploadPath=getServletContext().getRealPath("/sangpumimg");
@@ -52,8 +52,6 @@ response.sendRedirect("../index.jsp?main=sangpum/sangpumlist.jsp");
 }catch(Exception e){
 	
 }
-
-
 
 %>
 
