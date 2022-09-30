@@ -77,9 +77,9 @@ int cartSize=sdao.getCartList(myid).size();
     <ul class="nav navbar-nav">
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="" id="hov" style="margin-right:5px;">Category<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="">Hot Tea</a></li>
-          <li><a href="">Ice Tea</a></li>
-          <li><a href="">Season Menu</a></li>
+          <li><a href="">티 세트</a></li>
+          <li><a href="">티 단품</a></li>
+          <li><a href="">다기 & 다도구</a></li>
         </ul>
       </li>
       
