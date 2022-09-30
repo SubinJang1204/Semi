@@ -185,6 +185,27 @@ public int getTotalCount() {
 		return dto;
 	}
 	
+	//삭제
+		public void deleteShop(String shopnum) {
+			
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt=null;
+			
+			String sql="delete from shop where shopnum=?";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setString(1, shopnum);
+				pstmt.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				db.dbClose(pstmt, conn);
+			}
+		}
+	
 	//cart insert
 public void insertCart(CartDto dto) {
 		
@@ -271,4 +292,6 @@ public void deleteCart(String idx) {
 		db.dbClose(pstmt, conn);
 	}
 }
+
+
 }

@@ -11,7 +11,7 @@
 <body>
 
 <div>
-	<form action="sangpum/sangpumaddaction1.jsp" method="post" enctype="multipart/form-data">
+	<form action="sangpum/sangpumaddaction.jsp" method="post" enctype="multipart/form-data">
 		<table class="table table-bordered" style="width: 600px;">
 			<caption><b>상품등록</b></caption>
 			<tr>
@@ -72,6 +72,7 @@
 	</form>
 
 </div>
+
 
 </body>
 </html>

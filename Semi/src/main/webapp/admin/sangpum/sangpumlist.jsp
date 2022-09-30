@@ -13,22 +13,52 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
+<script type="text/javascript">
+$(function(){
+	
+	//삭제아이콘클릭시 삭제
+	$("span.adel").click(function() {
+		var shopnum=$(this).attr("shopnum");
+		//alert(shopnum);
+		var a=confirm("삭제하려면 [확인]을 눌러주세요");
+		if(a){
+			del(shopnum);
+			location.reload(); //현재페이지 새로고침
+		}
+	});
+	
+});
+
+function del(shopnum) {
+	$.ajax({
+		type:"get",
+		url:"sangpum/sangpumdelete.jsp",
+		dataType:"html",
+		data:{"shopnum":shopnum},
+		success:function(){
+			
+		}
+		
+	});
+	
+}
+
+</script>
 </head>
 <style>
+
 .photo{
 width: 50px;
 }
 
 </style>
-
-
+<body>
 <%
 ShopDao dao=new ShopDao();
 List<ShopDto> list=dao.getAllSangpums();
 NumberFormat nf=NumberFormat.getCurrencyInstance();
 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd ");
 %>
-<body>
 
   <h2>상품리스트</h2>
   <ul class="nav nav-tabs" style="width: 700px;">
@@ -48,6 +78,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd ");
       		<td width="80">카테고리</td>
       		<td width="80">사진</td>
       		<td width="80">가격</td>
+      		<td width="50"></td>
       	
       	
       	</tr>
@@ -59,15 +90,16 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd ");
       		<td><a style="color: black; cursor: pointer;"><%=dto.getSangpum() %></a></td>
       		<td><%=dto.getCategory() %></td>
       		<td>
-      		<img alt="" src="#" class="photo">
+      			<img src="../image2/<%=photo %>" class="photo">
       		</td>
       		<td><%=nf.format(dto.getPrice()) %></td>
-      		
+      		<td><span class="adel glyphicon glyphicon-trash" shopnum="<%=dto.getShopnum()%>"
+      		style="cursor: pointer;"></span></td>
       		
       	</tr>
       	<%}%>
       	<tr>
-      	<td colspan="5" align="right">
+      	<td colspan="6" align="right">
       	<button onclick="location.href='index.jsp?main=sangpum/sangpumaddform.jsp'">추가</button>
       	
       	
@@ -97,7 +129,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd ");
       		<td><a style="color: black; cursor: pointer;"><%=dto.getSangpum() %></a></td>
       		<td><%=dto.getCategory() %></td>
       		<td>
-      		<img alt="" src="sangpumimg/<%=photo%>" class="photo">
+      		<img  src="image2/<%=photo %>" class="photo">
       		</td>
       		<td><%=nf.format(dto.getPrice()) %></td>
       		
@@ -129,7 +161,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd ");
       		<td><a style="color: black; cursor: pointer;"><%=dto.getSangpum() %></a></td>
       		<td><%=dto.getCategory() %></td>
       		<td>
-      		<img alt="" src="sangpumimg/<%=photo%>">
+      		<img  src="../image2/<%=photo %>">
       		</td>
       		<td><%=nf.format(dto.getPrice()) %></td>
       		
@@ -160,7 +192,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd ");
       		<td><a style="color: black; cursor: pointer;"><%=dto.getSangpum() %></a></td>
       		<td><%=dto.getCategory() %></td>
       		<td>
-      		<img alt="" src="sangpumimg/<%=photo%>">
+      		<img  src="../image2/<%=photo %>">
       		</td>
       		<td><%=nf.format(dto.getPrice()) %></td>
       		

@@ -1,6 +1,6 @@
-<%@page import="data.dto.ShopDto"%>
-<%@page import="data.dao.ShopDao"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="data.dao.ShopDao"%>
+<%@page import="data.dto.ShopDto"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -15,13 +15,10 @@
 <body>
 
 <%
-String uploadPath=getServletContext().getRealPath("sangpumimg");
+String uploadPath=getServletContext().getRealPath("image2");
 System.out.println(uploadPath);
-
 int uploadSize=1024*1024*4;
-
 MultipartRequest multi=null;
-
 try{
 	multi=new MultipartRequest(request,uploadPath,uploadSize,"utf-8",new DefaultFileRenamePolicy());
 	
@@ -49,7 +46,6 @@ try{
 }catch(Exception e){
 	
 }
-
 %>
 
 </body>
