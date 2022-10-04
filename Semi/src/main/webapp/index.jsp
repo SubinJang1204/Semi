@@ -26,6 +26,7 @@ line-height:100px;
 text-align:center;
 position:relative;
 z-index:10;
+
 }
 
 div.main{
@@ -33,8 +34,6 @@ width:1920px;
 height:600px;
 font-size:12pt;
 margin-top:-70px;
-
-z-index:-1;
 }
 
 a{

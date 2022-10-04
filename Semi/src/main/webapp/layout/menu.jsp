@@ -51,7 +51,6 @@ int cartSize=sdao.getCartList(myid).size();
   border:1px solid #FF7BAC;
   color:#FF7BAC;
   }
-  
   </style>
 </head>
 <body>
@@ -71,7 +70,7 @@ int cartSize=sdao.getCartList(myid).size();
       </li>
       
       <li><a href="" id="hov" style="margin-right:5px;">Best</a></li>
-      <li><a href="" id="hov">Event</a></li>
+      <li><a href="index.jsp?main=event/smartlist.jsp" id="hov">Event</a></li>
    <%
 if(loginok==null){
 	%> 
@@ -101,7 +100,7 @@ if(loginok==null){
 					}
 						%>
 	
-	<li style="margin-left:780px;"><a href=""><span class="glyphicon glyphicon-user" id="hov" style="font-size:16pt;top:-1px"></span></a></li>
+	<li style="margin-left:780px;"><a href="index.jsp?main=mypage/mypage.jsp"><span class="glyphicon glyphicon-user" id="hov" style="font-size:16pt;top:-1px"></span></a></li>
   
     <li><a href=""><span class="	glyphicon glyphicon-lock" id="hov" style="font-size:16pt;top:-1px"><div style="color:white;background-color:#FF7BAC;
    width:20px;height:20px;border-radius:100%;position:relative;top:-23px;left:15px;font-size:15px;line-height:20px;">0</div></span></a></li>
