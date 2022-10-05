@@ -97,6 +97,8 @@ public int getTotalCount() {
 				dto.setPhoto(rs.getString("photo"));
 				dto.setPrice(rs.getInt("price"));
 				dto.setIpgoday(rs.getString("ipgoday"));
+				dto.setLikes(rs.getInt("likes"));
+			
 				
 				//리스트에 추가
 				list.add(dto);
@@ -132,6 +134,8 @@ public int getTotalCount() {
 				dto.setPrice(rs.getInt("price"));
 				dto.setSangpum(rs.getString("sangpum"));
 				dto.setIpgoday(rs.getString("ipgoday"));
+				dto.setLikes(rs.getInt("likes"));
+
 				
 				list.add(dto);
 			}
@@ -166,6 +170,8 @@ public int getTotalCount() {
 				dto.setPrice(rs.getInt("price"));
 				dto.setSangpum(rs.getString("sangpum"));
 				dto.setIpgoday(rs.getString("ipgoday"));
+				dto.setLikes(rs.getInt("likes"));
+
 				
 				list.add(dto);
 			}
@@ -201,6 +207,8 @@ public int getTotalCount() {
 					dto.setPrice(rs.getInt("price"));
 					dto.setSangpum(rs.getString("sangpum"));
 					dto.setIpgoday(rs.getString("ipgoday"));
+					dto.setLikes(rs.getInt("likes"));
+
 					
 					list.add(dto);
 				}
@@ -235,6 +243,9 @@ public int getTotalCount() {
 				dto.setIpgoday(rs.getString("ipgoday"));
 				dto.setPrice(rs.getInt("price"));
 				dto.setPhoto(rs.getString("photo"));
+				dto.setLikes(rs.getInt("likes"));
+
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -332,4 +343,25 @@ public void deleteCart(String idx) {
 		db.dbClose(pstmt, conn);
 	}
 }
+//좋아요
+public void updateLikes(String shopnum)
+{
+	Connection conn=db.getConnection();
+	PreparedStatement pstmt=null;
+	String sql="update shop set likes=likes+1 where shopnum=?";
+	
+	try {
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setString(1, shopnum);
+		pstmt.execute();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+	db.dbClose(pstmt, conn);	
+	}
+	
+	
+}
+
 }
