@@ -253,7 +253,7 @@ no=totalCount-(currentPage-1)*perPage;
 		if(startPage>1)
 		{%>
 			<li>
-				<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>?currentPage=<%=startPage-1%>">이전</a>
+				<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>&currentPage=<%=startPage-1%>">이전</a>
 			</li>
 		<%}
 		
@@ -262,11 +262,11 @@ no=totalCount-(currentPage-1)*perPage;
 			if(pp==currentPage)
 			{%>
 				<li class="active">
-					<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>?currentPage=<%=pp%>"><%=pp %></a>
+					<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>&currentPage=<%=pp%>"><%=pp %></a>
 				</li>	
 			<%}else{%>
 				<li>
-					<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>?currentPage=<%=pp%>"><%=pp %></a>
+					<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>&currentPage=<%=pp%>"><%=pp %></a>
 				</li>
 			<%}
 		}
@@ -275,7 +275,7 @@ no=totalCount-(currentPage-1)*perPage;
 				if(endPage<totalPage)
 				{%>
 					<li>
-						<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>?currentPage=<%=endPage+1%>">다음</a>
+						<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>&currentPage=<%=endPage+1%>">다음</a>
 					</li>
 				<%}
 		
