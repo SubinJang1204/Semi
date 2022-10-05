@@ -1,3 +1,5 @@
+
+<%@page import="data.dto.ShopDto"%>
 <%@page import="data.dao.ShopDao"%>
 <%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -99,15 +101,17 @@ if(loginok==null){
    width:20px;height:20px;border-radius:100%;position:relative;top:-23px;left:15px;font-size:15px;line-height:20px;">0</div></span></a></li>
     <li><a href="login/loginform.jsp"><span class="glyphicon glyphicon-log-in" id="hov" style="font-size:16pt;top:-1px"></span></a></li>
     <li style="margin-top:-35px;">
-     
-     <form class="navbar-form navbar-left" action="">
-     
-        <input type="text" class="form-control" placeholder="Enter your keyword" style="width:200px;border-radius:5px;">
- 
-      <button type="submit" class="btn btn-default btn-sm btnsearch" style="">Search</button>
-    </form>
+   
+    <form class="navbar-form navbar-left" method="post" action="search.jsp" accept-charset="utf-8">
+         <input type="text" name="sangpum" class="form-control" placeholder="Enter your keyword" style="width:200px;border-radius:5px;" required="required">
+      <button type="submit" class="btn btn-default btn-sm btnsearch" style="" >Search</button>
+      	
+    </form>  
     
+     
+  	
     </li>
+    	
      <%--  <%
 	//로그인 중이면
 }else{ 
@@ -124,6 +128,7 @@ if(loginok==null){
     </ul>
   </div>
 </nav>
+
 
 
 </body></html>

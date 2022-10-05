@@ -14,8 +14,43 @@
 <style type="text/css">
 *{
 font-family: 'Gowun Dodum';
+
+}
+span.likes{
+font-size: 22px;
+}
+
+span.heart{
+font-size: 27px;
+cursor: pointer;
 }
 </style>
+<script type="text/javascript">
+$(function(){
+	$(document).on("click",".heart",function(){
+		var shopnum=$(this).attr("shopnum");
+		var tag=$(this);
+		//alert(shopnum);
+		
+		$.ajax({
+			type:"get",
+			dataType:"json",
+			url:"teashop/ajaxlikes.jsp",
+			data:{"shopnum":shopnum},
+			success:function(res){
+				//alert(res.likes);
+				tag.next().text(res.likes);
+				tag.animate({"font-size":"34px"},500,function(){
+					//애니메이션이 끝난 후 다시 0px로 변경
+					$(this).css("font-size","24px");
+				});
+			}
+		});
+		
+	});
+})
+
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -48,13 +83,13 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 			int sale=20;
 			
 			%>
-			<td style="padding-right: 50px; padding-bottom: 10px;">
-				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">
+			<td style="padding-right: 50px; padding-bottom: 10px; padding-top: 40px;">
+				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">	
 					
 					
 					<img src="images2/<%=photo%>" class="photo" style="width: 450px;">
 					<br>
-					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span><br>
+					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span></a><br>
 					<%
 					int price=(int)(dto.getPrice()+(dto.getPrice()*(sale/100.0)));
 					%>	
@@ -64,8 +99,11 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 					<b style="color:hotpink; font-size: 25px;"><%=sale %>%</b>&nbsp;
 					<b><%=nf.format(dto.getPrice()) %>원</b>&nbsp;
 					<strike style="color: darkgray; font-size: 22px;"><%=nf.format(price) %>원</strike> 
+					<br>
+					&nbsp;<span class="heart glyphicon glyphicon-heart" shopnum=<%=dto.getShopnum()%> style="color: deeppink;"></span>
+					<span class="likes"><%=dto.getLikes() %></span>
 					</div></span>
-				</a>
+			
 			</td>
 			<%
 			if((i+3)%3==0){%>
@@ -95,13 +133,13 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 			int sale=20;
 			
 			%>
-			<td>
+			<td style="padding-right: 50px; padding-bottom: 10px; padding-top: 40px;">
 				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">
 					
 					
 					<img src="images2/<%=photo%>" class="photo" style="width: 450px;">
 					<br>
-					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span><br>
+					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span><br></a>
 					<%
 					int price=(int)(dto.getPrice()+(dto.getPrice()*(sale/100.0)));
 					%>	
@@ -111,8 +149,11 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 					<b style="color:hotpink; font-size: 25px;"><%=sale %>%</b>&nbsp;
 					<b><%=nf.format(dto.getPrice()) %>원</b>&nbsp;
 					<strike style="color: darkgray; font-size: 22px;"><%=nf.format(price) %>원</strike> 
+					<br>
+					&nbsp;<span class="heart glyphicon glyphicon-heart" shopnum=<%=dto.getShopnum()%> style="color: deeppink;"></span>
+					<span class="likes"><%=dto.getLikes() %></span>
 					</div></span>
-				</a>
+				
 			</td>
 			<%
 			if((i+3)%3==0){%>
@@ -142,13 +183,13 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 			int sale=20;
 			
 			%>
-			<td>
+			<td style="padding-right: 50px; padding-bottom: 10px; padding-top: 40px;">
 				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">
 					
 					
 					<img src="images2/<%=photo%>" class="photo" style="width: 450px;">
 					<br>
-					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span><br>
+					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span><br></a>
 					<%
 					int price=(int)(dto.getPrice()+(dto.getPrice()*(sale/100.0)));
 					%>	
@@ -158,8 +199,11 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 					<b style="color:hotpink; font-size: 25px;"><%=sale %>%</b>&nbsp;
 					<b><%=nf.format(dto.getPrice()) %>원</b>&nbsp;
 					<strike style="color: darkgray; font-size: 22px;"><%=nf.format(price) %>원</strike> 
+					<br>
+					&nbsp;<span class="heart glyphicon glyphicon-heart" shopnum=<%=dto.getShopnum()%> style="color: deeppink;"></span>
+					<span class="likes"><%=dto.getLikes() %></span>
 					</div></span>
-				</a>
+				
 			</td>
 			<%
 			if((i+3)%3==0){%>
