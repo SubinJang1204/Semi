@@ -132,6 +132,7 @@ public int getTotalCount() {
 				dto.setPrice(rs.getInt("price"));
 				dto.setSangpum(rs.getString("sangpum"));
 				dto.setIpgoday(rs.getString("ipgoday"));
+				dto.setLikes(rs.getInt("likes"));
 				
 				list.add(dto);
 			}
@@ -166,6 +167,7 @@ public int getTotalCount() {
 				dto.setPrice(rs.getInt("price"));
 				dto.setSangpum(rs.getString("sangpum"));
 				dto.setIpgoday(rs.getString("ipgoday"));
+				dto.setLikes(rs.getInt("likes"));
 				
 				list.add(dto);
 			}
@@ -201,6 +203,7 @@ public int getTotalCount() {
 					dto.setPrice(rs.getInt("price"));
 					dto.setSangpum(rs.getString("sangpum"));
 					dto.setIpgoday(rs.getString("ipgoday"));
+					dto.setLikes(rs.getInt("likes"));
 					
 					list.add(dto);
 				}
@@ -235,6 +238,7 @@ public int getTotalCount() {
 				dto.setIpgoday(rs.getString("ipgoday"));
 				dto.setPrice(rs.getInt("price"));
 				dto.setPhoto(rs.getString("photo"));
+				dto.setLikes(rs.getInt("likes"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -333,13 +337,14 @@ public void deleteCart(String idx) {
 	}
 }
 
+	//서치
 public List<ShopDto> getSearchSang(String sangpum){
-	List<ShopDto> list=new Vector<>();
+	List<ShopDto> list=new ArrayList<>();
 	Connection conn=db.getConnection();
 	PreparedStatement pstmt=null;
 	ResultSet rs=null;
 	
-	String sql="select * from shop where sangpum like ? order by num desc";
+	String sql="select * from shop where sangpum like ?";
 	
 	try {
 		pstmt=conn.prepareStatement(sql);
@@ -367,4 +372,25 @@ public List<ShopDto> getSearchSang(String sangpum){
 	}
 	return list;
 }
+
+public void likes(String shopnum) {
+	Connection conn=db.getConnection();
+	PreparedStatement pstmt=null;
+	
+	String sql="update shop set likes=likes+1 where shopnum=?";
+	
+	try {
+		pstmt=conn.prepareStatement(sql);
+		
+		pstmt.setString(1, shopnum);
+		pstmt.execute();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		db.dbClose(pstmt, conn);
+	}
+	
+	
+};
 }

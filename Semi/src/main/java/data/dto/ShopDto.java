@@ -8,6 +8,7 @@ public class ShopDto {
 	private String photo;
 	private int price;
 	private String ipgoday;
+	private int likes;
 	
 	public String getShopnum() {
 		return shopnum;
@@ -45,4 +46,12 @@ public class ShopDto {
 	public void setIpgoday(String ipgoday) {
 		this.ipgoday = ipgoday;
 	}
+	public int getLikes() {
+		return likes;
+	}
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+	
+	
 }
