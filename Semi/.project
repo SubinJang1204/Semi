@@ -3,6 +3,10 @@
 	<name>Semi</name>
 	<comment></comment>
 	<projects>
+		<project>mysql-connector-java-5.1.49</project>
+		<project>json_simple</project>
+		<project>json-simple-1.1</project>
+		<project>cos</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

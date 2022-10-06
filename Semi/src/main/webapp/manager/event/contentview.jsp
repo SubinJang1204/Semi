@@ -171,17 +171,13 @@ function list(){
 			 //삭제 본인만 보이게
 				var myid=item.nickname;
 			// alert(myid);
-				if(loginid==myid){
+				
 					   s+="<br><div><b>"+item.nickname+"</b>&nbsp;&nbsp;<span class='aday'>"+item.writeday+"</span><br>"
 					   s+=item.content		   
 			           s+="&nbsp;&nbsp;<span class='glyphicon glyphicon-trash adel' idx="+item.idx+" style='cursor:pointer'></span>";
 			           s+="&nbsp;<span class='glyphicon glyphicon-edit amod' idx="+item.idx+" style='cursor:pointer'></span>";
 			           s+="</div>";
-				}else{
-					   s+="<br><div><b>"+item.nickname+"</b>&nbsp;&nbsp;<span class='aday'>"+item.writeday+"</span><br>"
-					   s+=item.content
-					   s+="</div>";
-				}
+				
 			  
 		   });
 		   $("div.alist").html(s);
