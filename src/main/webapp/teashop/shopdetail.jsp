@@ -187,20 +187,18 @@ no=totalCount-(currentPage-1)*perPage;
     <li><a href="#menu3">상품고시정보</a></li>
   </ul>
 </div>
+  <!-- 제품상세 -->
 
-<div class="tab-content">
+<div class="tab-content" style="margin-top: 200px;">
+
   <div id="menu1">
-   <img alt="" src="images/teadeail_01.jpg">
-   <img alt="" src="images/teadeail_02.jpg">
-   <img alt="" src="images/teadeail_03.jpg">
-   <img alt="" src="images/teadeail_04.jpg">
-   <img alt="" src="images/teadeail_05.jpg">
-   <img alt="" src="images/teadeail_06.jpg">
-   <img alt="" src="images/teadeail_07.jpg">
+  <h3>상품상세</h3>
+  <img alt="" src="images2/런던셀렉션1.jpg">
+
   </div>
-  
+  <hr>
   <!-- 고객리뷰 -->
-  <div id="menu2">
+  <div id="menu2" style="margin-top: 100px;">
     <h3>고객리뷰</h3>
     <p>상품을 직접 구매하여 경험하신 분들의 솔직담백한 후기들을 확인해보세요</p>
    
@@ -212,13 +210,13 @@ no=totalCount-(currentPage-1)*perPage;
 	
   
 <br>
-<table class="table" style="width: 1300px; margin-left: 320px;">
+<table class="table" style="width: 1300px; margin-left: 320px;" id="tag1">
 
 		<tr style="backgrouond: #ffdd33; font-size: 20pt;">
 			<th width="100px" style="text-align: center;">작성자</th>		
 			<th width="400px" style="text-align: center;">내용</th>
 			<th width="100px" style="text-align: center;">작성일</th>
-			<th width="100px" style="text-align: center;">별점 <%=list.size() %><%=currentPage %></th>			
+			<th width="100px" style="text-align: center;">별점</th>			
 		</tr>
 
 		<%
@@ -234,8 +232,7 @@ no=totalCount-(currentPage-1)*perPage;
 			%>
 			<tr style="height: 200px; ">
 				<td align="center" style="line-height: 200px;"><%=rdto.getWriter() %></td>
-				<td align="center" style="line-height: 200px;"><%=rdto.getContent() %> 
-				<img src="../images2/<%=rdto.getPhoto()%>"></td>
+				<td align="center" style="line-height: 200px;"><%=rdto.getContent() %>
 				<td align="center" style="line-height: 200px;"><%=sdf.format(rdto.getWriteday()) %></td>
 				<td align="center" style="line-height: 200px;"> <%=tot%></td>
 			</tr>
@@ -253,7 +250,7 @@ no=totalCount-(currentPage-1)*perPage;
 		if(startPage>1)
 		{%>
 			<li>
-				<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>&currentPage=<%=startPage-1%>">이전</a>
+				<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>&currentPage=<%=startPage-1%>#tag1">이전</a>
 			</li>
 		<%}
 		
@@ -262,11 +259,11 @@ no=totalCount-(currentPage-1)*perPage;
 			if(pp==currentPage)
 			{%>
 				<li class="active">
-					<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>&currentPage=<%=pp%>"><%=pp %></a>
+					<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>&currentPage=<%=pp%>#tag1"><%=pp %></a>
 				</li>	
 			<%}else{%>
 				<li>
-					<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>&currentPage=<%=pp%>"><%=pp %></a>
+					<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>&currentPage=<%=pp%>#tag1"><%=pp %></a>
 				</li>
 			<%}
 		}
@@ -275,19 +272,22 @@ no=totalCount-(currentPage-1)*perPage;
 				if(endPage<totalPage)
 				{%>
 					<li>
-						<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>&currentPage=<%=endPage+1%>">다음</a>
+						<a href="index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum() %>&currentPage=<%=endPage+1%>#tag1">다음</a>
 					</li>
 				<%}
 		
 		%>
 	</ul>
-</div>
+	</div>
    
-  </div>
-  <div id="menu3">
+  		</div>
+  <hr>
+  <div id="menu3" style="margin-top: 100px;">
     <h3>상품의 자세한 사항을 확인해보세요.</h3>
     <p>상품에 대한 디테일한 사항을 하단에서 확인해보세요.
 상품정보제공 고시부터 상품청약 조회안내까지 모든 사항을 확인하실 수 있습니다.</p>
+  <img alt="" src="images2/런던셀렉션 0.jpg" style="margin-top: 100px;">
+
   </div>
 </div>
 </form>
