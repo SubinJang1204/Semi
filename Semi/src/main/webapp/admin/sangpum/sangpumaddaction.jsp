@@ -15,7 +15,7 @@
 <body>
 
 <%
-String uploadPath=getServletContext().getRealPath("shopsave1");
+String uploadPath=getServletContext().getRealPath("images2");
 System.out.println(uploadPath);
 
 int uploadSize=1024*1024*2; //2mb
@@ -46,7 +46,7 @@ dto.setSangpum(sangpum);
 dao.insertShop(dto);
 
 //방명록 목록 이동
-response.sendRedirect("../index.jsp?main=sangpumlist.jsp");
+response.sendRedirect("../index.jsp?main=sangpum/sangpumlist.jsp");
 
 }catch(Exception e){
 	

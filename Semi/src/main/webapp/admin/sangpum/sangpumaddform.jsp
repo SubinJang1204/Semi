@@ -11,7 +11,7 @@
 <body>
 
 <div>
-	<form action="sangpumaddaction.jsp" method="post" enctype="multipart/form-data">
+	<form action="sangpum/sangpumaddaction.jsp" method="post" enctype="multipart/form-data">
 		<table class="table table-bordered" style="width: 600px;">
 			<caption><b>상품등록</b></caption>
 			<tr>
@@ -64,7 +64,7 @@
 				<td colspan="2" align="center">
 					<button type="submit" class="btn btn-info" style="width: 100px;">상품저장</button>
 					<button type="button" class="btn btn-info" style="width: 100px;"
-					onclick="location.href='../index.jsp?main=sangpumlist.jsp'">상품목록</button>
+					onclick="location.href='../index.jsp?main=sangpum/sangpumlist.jsp'">상품목록</button>
 				</td>
 			</tr>
 			
