@@ -168,7 +168,7 @@ function list(){
 		   
 		   $.each(res,function(idx,item){
 			
-			 //삭제 본인만 보이게
+			 
 				var myid=item.nickname;
 			// alert(myid);
 				
