@@ -18,7 +18,7 @@ if(b){
 	session.setAttribute("saveok", cbsave==null?null:"yes");//cbsave가 null이면 null이고 아니면 yes라고 할게요
 	
 	//로그인 메인으로 이동
-	response.sendRedirect("../index.jsp?main=login/loginmain.jsp");
+	response.sendRedirect("../index.jsp?main=layout/main.jsp");
 }else{
 	%>
 	<script>

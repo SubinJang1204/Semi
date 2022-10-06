@@ -1,3 +1,4 @@
+<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,10 +14,12 @@
 </head>
 <body>
 <%
+
 //loginok 제거
-session.removeAttribute("loginok");
+ session.removeAttribute("loginok"); 
+
 //loginmain으로 이동
-response.sendRedirect("../index.jsp?main=login/loginmain.jsp");
+response.sendRedirect("../index.jsp?main=layout/main.jsp");
 %>
 </body>
 </html>

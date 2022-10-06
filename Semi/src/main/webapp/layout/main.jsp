@@ -106,6 +106,7 @@ font-family: 'Gowun Dodum', sans-serif;
  display:inline-block;
  position:relative;
  margin-top:90px;
+ margin-bottom:90px;
  }
  .best{
  width:300px;
@@ -124,34 +125,25 @@ font-family: 'Gowun Dodum', sans-serif;
  transition:0.4s;
  }
 
+.event{
+width:1920px;
+height:auto;
+background-color:#F8f9fa;
+}
  .event_wrap{
  width:1200px;
  height:auto;
  display:inline-block;
  position:relative;
- }
- .event{
- width:300px;
- height:300px;
- margin:30px 30px;
- position:relative;
-  display:inline-block;
- }
- 
- .event img{
- border-radius:50%;
- }
- .event img:hover{
- opacity:0.3;
- background-color:#eee;
- transition:0.4s;
+ margin-top:90px;
+ margin-bottom:130px;
  }
  
   footer {
-    background-color: #FF7BAC;;
+    background-color: #FF7BAC;
     color: #fff;
     padding: 32px;
-    margin-top:100px;
+   
   }
   footer a {
     color: #fff;
@@ -169,7 +161,7 @@ font-family: 'Gowun Dodum', sans-serif;
 </style>
 </head>
 <body>
-
+<center>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -183,24 +175,18 @@ font-family: 'Gowun Dodum', sans-serif;
       <div class="item active" style="margin-top:47px;">
         <img src="images/banner4.png" width="1920" height="600">
         <div class="carousel-caption">
-       <!--    <h3>한가위 특별 행사</h3>
-          <p>The atmosphere in New York is lorem ipsum.</p>  -->
         </div>      
       </div>
 
       <div class="item" style="margin-top:47px;">
         <img src="images/banner5.png" width="1920" height="600">
         <div class="carousel-caption">
-        <!--   <h3>한가위 특별 행사</h3>
-          <p>Thank you, Chicago - A night we won't forget.</p> -->
         </div>      
       </div>
     
       <div class="item" style="margin-top:47px;">
         <img src="images/banner6.png" width="1920" height="600">
         <div class="carousel-caption">
-        <!--   <h3>한가위 특별 행사</h3>
-          <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p> -->
         </div>      
       </div>
     </div>
@@ -217,8 +203,8 @@ font-family: 'Gowun Dodum', sans-serif;
 </div>
 
 <div class="best_wrap">
-<h3 style="color:#8e8e8e;font-weight:400;float:left;position:relative;left:100px;margin-botton:30px;">BEST</h3><br><br>
-<p style="color:#8e8e8e;font-weight:201;float:left;position:relative;left:45px;">가장 사랑받는 제품들만을 모았습니다.</p><br><br>
+<h3 style="color:#8e8e8e;font-weight:400;float:left;position:relative;left:100px;">BEST</h3><br><br>
+<p style="color:#8e8e8e;font-weight:200;float:left;position:relative;left:45px;margin-top:5px;">가장 사랑받는 제품들</p><br><br>
 <span class="glyphicon glyphicon-chevron-right" style="color:#FF7BAC;font-size:12px;font-weight:300px;top:-1px;float:left;position:relative;left:97px;">자세히보기</span>
 
 <div class="best">
@@ -232,31 +218,67 @@ font-family: 'Gowun Dodum', sans-serif;
 <div class="best">
 <img src="images/prd3.png">
 </div>
-vv '
-</div>
 
-<div class="event_wrap" style="margin-top:50px;">
-<h3 style="color:#8e8e8e;font-weight:401;">EVENT</h3>
-<div class="event">
-<img src="images/prd1.png">
 </div>
 
 <div class="event">
-<img src="images/prd2.png">
-</div>
+ <div class="event_wrap">
+<h3 style="color:#8e8e8e;font-weight:400;float:left;position:relative;left:100px;">EVENT</h3><br><br>
+<p style="color:#8e8e8e;font-weight:200;float:left;position:relative;left:25px;margin-top:5px;">최신 소식을 한 눈에</p><br><br>
 
-<div class="event">
-<img src="images/prd3.png">
-</div>
-</div>
+<span class="glyphicon glyphicon-chevron-right" style="color:#FF7BAC;font-size:12px;font-weight:300px;top:-1px;float:left;position:relative;left:97px;">자세히보기</span>
 
+
+<a href="index.jsp?main=event/smartlist.jsp">
+<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:1000px;">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active" style="margin-top:47px;">
+        <img src="images/event_banner1.png" width="1200" height="auto">
+        <div class="carousel-caption">
+        
+        </div>      
+      </div>
+
+      <div class="item" style="margin-top:47px;">
+        <img src="images/event_banner2.png" width="1200" height="auto">
+        <div class="carousel-caption">      
+        </div>      
+      </div>
+      
+       <div class="item" style="margin-top:47px;">
+        <img src="images/event_banner3.png" width="1200" height="auto">
+        <div class="carousel-caption">      
+        </div>      
+      </div>
+    
+      <div class="item" style="margin-top:47px;">
+        <img src="images/event_banner4.png" width="1200" height="auto">
+        <div class="carousel-caption">
+        </div>      
+      </div>
+    </div>
+</div>
+</div>
+</a> 
+</div>
 <!-- Footer -->
+
 <footer class="text-center">
   <a class="up-arrow" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
   <p>Team 3 <a href="" data-toggle="tooltip" title="Visit w3schools">SemiProject</a></p> 
 </footer>
+</center>
 
 </body>
 </html>

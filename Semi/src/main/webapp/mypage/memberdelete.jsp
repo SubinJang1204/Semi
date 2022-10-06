@@ -1,6 +1,7 @@
+<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -12,18 +13,19 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 <body>
+	
 <%
-//세션에 저장된 loginok 읽기
-String loginok=(String)session.getAttribute("loginok");
-if(loginok==null){
-	%>
-	<jsp:include page="loginform.jsp"/>
-	<%
-}else{
-	%>
-	<jsp:include page="logoutaction.jsp"/>
-	<%
-}
+
+    String num=request.getParameter("num");
+
+    MemberDao dao=new MemberDao();
+	
+	dao.deleteMember(num);
+	
+	session.removeAttribute("loginok"); 
+	
+	response.sendRedirect("../index.jsp?main=login/loginform.jsp");
+
 %>
 </body>
 </html>

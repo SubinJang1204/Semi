@@ -9,7 +9,7 @@ public class ShopDto {
 	private int price;
 	private String ipgoday;
 	private int likes;
-	
+
 	public String getShopnum() {
 		return shopnum;
 	}
@@ -52,6 +52,5 @@ public class ShopDto {
 	public void setLikes(int likes) {
 		this.likes = likes;
 	}
-	
-	
+
 }
