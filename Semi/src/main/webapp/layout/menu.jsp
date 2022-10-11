@@ -63,9 +63,10 @@ int cartSize=sdao.getCartList(myid).size();
     <ul class="nav navbar-nav">
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="" id="hov" style="margin-right:5px;">Category<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="">티 세트</a></li>
-          <li><a href="">티 단품</a></li>
-          <li><a href="">다기 & 다도구</a></li>
+        <li><a href="index.jsp?main=teashop/all.jsp">전체상품</a></li>
+          <li><a href="index.jsp?main=teashop/teaset.jsp">티 세트</a></li>
+          <li><a href="index.jsp?main=teashop/tea.jsp">티 단품</a></li>
+          <li><a href="index.jsp?main=teashop/dagi.jsp">다기 & 다도구</a></li>
         </ul>
       </li>
       
@@ -78,12 +79,11 @@ if(loginok==null){
     <li  style="margin-left:883px;"><a href="index.jsp?main=login/loginform.jsp"><span class="glyphicon glyphicon-log-in" id="hov" style="font-size:16pt;top:-1px"></span></a></li>
     <li style="margin-top:-35px;">
      
-     <form class="navbar-form navbar-left" action="">
-     
-        <input type="text" class="form-control" placeholder="Enter your keyword" style="width:200px;border-radius:5px;">
- 
-      <button type="submit" class="btn btn-default btn-sm btnsearch" style="">Search</button>
-    </form>
+    <form class="navbar-form navbar-left" method="post" action="search.jsp" accept-charset="utf-8">
+         <input type="text" name="sangpum" class="form-control" placeholder="Enter your keyword" style="width:200px;border-radius:5px;" required="required">
+      <button type="submit" class="btn btn-default btn-sm btnsearch" style="" >Search</button>
+      	
+    </form> 
     </li>
     <%
 	//로그인 중이면
@@ -109,9 +109,9 @@ if(loginok==null){
    
     <li style="margin-top:-35px;">
      
-     <form class="navbar-form navbar-left" action="">
+     <form class="navbar-form navbar-left" action="index.jsp?main=teashop/tea.jsp" method="post" accept-charset="utf-8">
      
-        <input type="text" class="form-control" placeholder="Enter your keyword" style="width:200px;border-radius:5px;">
+        <input type="text" name="sangpum" class="form-control" placeholder="Enter your keyword" style="width:200px;border-radius:5px;"  required="required">
  
       <button type="submit" class="btn btn-default btn-sm btnsearch" style="">Search</button>
     </form>
