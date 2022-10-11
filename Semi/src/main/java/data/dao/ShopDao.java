@@ -152,7 +152,7 @@ public void insertCart(CartDto dto) {
 		PreparedStatement pstmt=null;
 		
 		//나중에 좋아요 이런 애들도 0값  넣어주면 됨
-		String sql="insert into cart values(null,?,?,?,now())";
+		String sql="insert into cart values(null,?,?,?,?,now())";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -161,6 +161,7 @@ public void insertCart(CartDto dto) {
 			pstmt.setString(1, dto.getShopnum());
 			pstmt.setString(2, dto.getNum());	
 			pstmt.setInt(3, dto.getCnt());
+			pstmt.setInt(4, dto.getPojang());
 		
 			pstmt.execute();
 			
@@ -181,7 +182,7 @@ public List<HashMap<String, String>> getCartList(String id){
 	PreparedStatement pstmt=null;
 	ResultSet rs=null;
 	
-	String sql="select c.idx, s.sangpum, s.shopnum, s.photo, s.price, c.cnt, c.cartday "
+	String sql="select c.idx, s.sangpum, s.shopnum, s.photo, s.price, c.cnt, c.pojang, c.cartday "
 			+ "from cart c,  shop s, member m"
 					+ " where c.shopnum=s.shopnum and c.num=m.num and m.id=?" ;
 	
@@ -199,7 +200,49 @@ public List<HashMap<String, String>> getCartList(String id){
 			map.put("photo", rs.getString("photo"));
 			map.put("price", rs.getString("price"));
 			map.put("cnt", rs.getString("cnt"));
+			map.put("pojang", rs.getString("pojang"));
 			map.put("cartday", rs.getString("cartday"));
+			
+			
+			list.add(map);
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		db.dbClose(rs, pstmt, conn);
+	}
+	return list;
+}
+
+//리뷰출력
+public List<HashMap<String, String>> getAnswerList(String id){
+	
+	List<HashMap<String, String>> list=new ArrayList<HashMap<String, String>>();
+	
+	Connection conn=db.getConnection();
+	PreparedStatement pstmt=null;
+	ResultSet rs=null;
+	
+	String sql="select r.writer, s.sangpum, s.shopnum, s.photo, r.content, r.writeday "
+			+ "from reviewanswer r,  shop s, member m"
+					+ " where r.shopnum=s.shopnum and r.writer=m.id and m.id=?" ;
+	
+	try {
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		rs=pstmt.executeQuery();
+		
+		while(rs.next()) {
+			HashMap<String, String> map=new HashMap<String, String>();
+			
+			map.put("id", rs.getString("id"));
+			map.put("sangpum", rs.getString("sangpum"));
+			map.put("shopnum", rs.getString("shopnum"));
+			map.put("photo", rs.getString("photo"));			
+			map.put("content", rs.getString("content"));		
+			map.put("writerday", rs.getString("writeday"));
+			
 			
 			list.add(map);
 		}
@@ -231,4 +274,198 @@ public void deleteCart(String idx) {
 		db.dbClose(pstmt, conn);
 	}
 }
+
+//가격높은순
+	public List<ShopDto> getpriceDescSangpums(){
+		List<ShopDto>list=new ArrayList<>();
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from shop order by price desc";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ShopDto dto=new ShopDto();
+				dto.setShopnum(rs.getString("shopnum"));
+				dto.setCategory(rs.getString("category"));
+				dto.setPhoto(rs.getString("photo"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setSangpum(rs.getString("sangpum"));
+				dto.setIpgoday(rs.getString("ipgoday"));
+				dto.setLikes(rs.getInt("likes"));
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
+	
+	
+	//가격낮은순
+		public List<ShopDto> getpriceAscSangpums(){
+			List<ShopDto>list=new ArrayList<>();
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			
+			String sql="select * from shop order by price";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				rs=pstmt.executeQuery();
+				
+				while(rs.next()) {
+					ShopDto dto=new ShopDto();
+					dto.setShopnum(rs.getString("shopnum"));
+					dto.setCategory(rs.getString("category"));
+					dto.setPhoto(rs.getString("photo"));
+					dto.setPrice(rs.getInt("price"));
+					dto.setSangpum(rs.getString("sangpum"));
+					dto.setIpgoday(rs.getString("ipgoday"));
+					dto.setLikes(rs.getInt("likes"));
+					
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				db.dbClose(rs, pstmt, conn);
+			}
+			
+			return list;
+		}
+		public List<ShopDto> getSearchSang(String sangpum){
+			List<ShopDto> list=new ArrayList<>();
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			
+			String sql="select * from shop where sangpum like ?";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, "%"+sangpum+"%");
+				
+				rs=pstmt.executeQuery();
+				
+				while(rs.next()) {
+					ShopDto dto=new ShopDto();
+					
+					dto.setShopnum(rs.getString("shopnum"));
+					dto.setCategory(rs.getString("category"));
+					dto.setPhoto(rs.getString("photo"));
+					dto.setPrice(rs.getInt("price"));
+					dto.setSangpum(rs.getString("sangpum"));
+					dto.setIpgoday(rs.getString("ipgoday"));
+					
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				db.dbClose(rs, pstmt, conn);
+			}
+			return list;
+		}
+		
+		public List<ShopDto> getbest(){
+			List<ShopDto>list=new ArrayList<>();
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			
+			String sql="select * from shop order by likes desc";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				rs=pstmt.executeQuery();
+				
+				while(rs.next()) {
+					ShopDto dto=new ShopDto();
+					dto.setShopnum(rs.getString("shopnum"));
+					dto.setCategory(rs.getString("category"));
+					dto.setPhoto(rs.getString("photo"));
+					dto.setPrice(rs.getInt("price"));
+					dto.setSangpum(rs.getString("sangpum"));
+					dto.setIpgoday(rs.getString("ipgoday"));
+					dto.setLikes(rs.getInt("likes"));
+					
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				db.dbClose(rs, pstmt, conn);
+			}
+			
+			return list;
+		}
+
+		public void updatelikes(String shopnum) {
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt=null;
+			
+			String sql="update shop set likes=likes+1 where shopnum=?";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setString(1, shopnum);
+				pstmt.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				db.dbClose(pstmt, conn);
+			}
+			
+			
+		}
+		//전체 상품 반환
+		public List<ShopDto> getAllSangpums(){
+			List<ShopDto>list=new ArrayList<>();
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			
+			String sql="select * from shop order by shopnum desc";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				rs=pstmt.executeQuery();
+				
+				while(rs.next()) {
+					ShopDto dto=new ShopDto();
+					dto.setShopnum(rs.getString("shopnum"));
+					dto.setCategory(rs.getString("category"));
+					dto.setPhoto(rs.getString("photo"));
+					dto.setPrice(rs.getInt("price"));
+					dto.setSangpum(rs.getString("sangpum"));
+					dto.setIpgoday(rs.getString("ipgoday"));
+					dto.setLikes(rs.getInt("likes"));
+					
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				db.dbClose(rs, pstmt, conn);
+			}
+			
+			return list;
+		}
 }

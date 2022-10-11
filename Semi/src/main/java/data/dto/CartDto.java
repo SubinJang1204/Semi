@@ -8,7 +8,11 @@ public class CartDto {
 	private String shopnum;
 	private String num;
 	private int cnt;
+	private int pojang;
 	private Timestamp cartday;
+	
+	
+	
 	
 	public String getIdx() {
 		return idx;
@@ -33,6 +37,12 @@ public class CartDto {
 	}
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+	public int getPojang() {
+		return pojang;
+	}
+	public void setPojang(int pojang) {
+		this.pojang = pojang;
 	}
 	public Timestamp getCartday() {
 		return cartday;

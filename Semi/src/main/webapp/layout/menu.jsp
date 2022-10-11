@@ -1,3 +1,4 @@
+<%@page import="data.dto.MemberDto"%>
 <%@page import="data.dao.ShopDao"%>
 <%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,6 +16,7 @@ String loginok=(String)session.getAttribute("loginok");
 String myid=(String)session.getAttribute("myid");
 
 MemberDao dao=new MemberDao();
+
 String name=dao.getName(myid);
 
 ShopDao sdao=new ShopDao();
@@ -63,13 +65,14 @@ int cartSize=sdao.getCartList(myid).size();
     <ul class="nav navbar-nav">
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="" id="hov" style="margin-right:5px;">Category<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="">티 세트</a></li>
-          <li><a href="">티 단품</a></li>
-          <li><a href="">다기 & 다도구</a></li>
+        <li><a href="index.jsp?main=teashop/all.jsp">전체상품</a></li>	
+          <li><a href="index.jsp?main=teashop/teaset.jsp">티 세트</a></li>
+          <li><a href="index.jsp?main=teashop/tea.jsp">티 단품</a></li>
+          <li><a href="index.jsp?main=teashop/dagi.jsp">다기 & 다도구</a></li>
         </ul>
       </li>
       
-      <li><a href="" id="hov" style="margin-right:5px;">Best</a></li>
+      <li><a href="index.jsp?main=teashop/best.jsp" id="hov" style="margin-right:5px;">Best</a></li>
       <li><a href="index.jsp?main=event/smartlist.jsp" id="hov">Event</a></li>
    <%
 if(loginok==null){
@@ -102,8 +105,8 @@ if(loginok==null){
 	
 	<li style="margin-left:780px;"><a href="index.jsp?main=mypage/mypage.jsp"><span class="glyphicon glyphicon-user" id="hov" style="font-size:16pt;top:-1px"></span></a></li>
   
-    <li><a href=""><span class="	glyphicon glyphicon-lock" id="hov" style="font-size:16pt;top:-1px"><div style="color:white;background-color:#FF7BAC;
-   width:20px;height:20px;border-radius:100%;position:relative;top:-23px;left:15px;font-size:15px;line-height:20px;">0</div></span></a></li>
+    <li><a href="index.jsp?main=teashop/mycart.jsp?myid=<%=myid%>"><span class="	glyphicon glyphicon-lock" id="hov" style="font-size:16pt;top:-1px"><div style="color:white;background-color:#FF7BAC;
+   width:20px;height:20px;border-radius:100%;position:relative;top:-23px;left:15px;font-size:15px;line-height:20px;"><%=cartSize %></div></span></a></li>
    
    <li><a href="login/logoutaction.jsp"><span class="glyphicon glyphicon-log-in" id="hov" style="font-size:16pt;top:-1px"></span></a></li>
    
