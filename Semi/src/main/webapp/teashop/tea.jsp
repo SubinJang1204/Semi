@@ -1,3 +1,4 @@
+
 <%@page import="java.text.NumberFormat"%>
 <%@page import="data.dto.ShopDto"%>
 <%@page import="java.util.List"%>
@@ -60,7 +61,7 @@ List<ShopDto>list=dao.getAllSangpums();
 List<ShopDto>dlist=dao.getpriceDescSangpums();
 List<ShopDto>alist=dao.getpriceAscSangpums();
 %>
-<div class="container" style="margin-top: 70px; float: left; margin-left: 240px;">
+<div class="container" style="margin-top: 70px; float: left; margin-left: 240px; ">
  
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home" style="color: darkgray;">최신순</a></li>
@@ -83,11 +84,11 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 			int sale=20;
 			
 			%>
-			<td style="padding-right: 50px; padding-bottom: 10px; padding-top: 40px;">
+			<td style="padding-right: 50px; padding-bottom: 10px; padding-top: 40px; text-align: center;">
 				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">	
 					
 					
-					<img src="images2/<%=photo%>" class="photo" style="width: 450px;" onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum()%>'">
+					<img src="images2/<%=photo%>" class="photo" style="width: 450px;">
 					<br>
 					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span></a><br>
 					<%
@@ -133,11 +134,11 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 			int sale=20;
 			
 			%>
-			<td style="padding-right: 50px; padding-bottom: 10px; padding-top: 40px;">
+			<td style="padding-right: 50px; padding-bottom: 10px; padding-top: 40px; text-align: center;">
 				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">
 					
 					
-					<img src="images2/<%=photo%>" class="photo" style="width: 450px;" onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum()%>'">
+					<img src="images2/<%=photo%>" class="photo" style="width: 450px;">
 					<br>
 					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span><br></a>
 					<%
@@ -183,11 +184,11 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 			int sale=20;
 			
 			%>
-			<td style="padding-right: 50px; padding-bottom: 10px; padding-top: 40px;">
+			<td style="padding-right: 50px; padding-bottom: 10px; padding-top: 40px; text-align: center;">
 				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">
 					
 					
-					<img src="images2/<%=photo%>" class="photo" style="width: 450px;" onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum()%>'">
+					<img src="images2/<%=photo%>" class="photo" style="width: 450px;">
 					<br>
 					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span><br></a>
 					<%
@@ -225,4 +226,5 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 
 
 </body>
+
 </html>

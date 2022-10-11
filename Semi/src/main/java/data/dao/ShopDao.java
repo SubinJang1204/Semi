@@ -111,7 +111,6 @@ public int getTotalCount() {
 		return list;
 	}
 
-	//전체 갯수 반환
 	
 	//onedata
 	public ShopDto getData(String shopnum) {
@@ -134,6 +133,7 @@ public int getTotalCount() {
 				dto.setIpgoday(rs.getString("ipgoday"));
 				dto.setPrice(rs.getInt("price"));
 				dto.setPhoto(rs.getString("photo"));
+				dto.setLikes(rs.getInt("likes"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -345,40 +345,41 @@ public void deleteCart(String idx) {
 			
 			return list;
 		}
-		public List<ShopDto> getSearchSang(String sangpum){
-			List<ShopDto> list=new ArrayList<>();
-			Connection conn=db.getConnection();
-			PreparedStatement pstmt=null;
-			ResultSet rs=null;
-			
-			String sql="select * from shop where sangpum like ?";
-			
-			try {
-				pstmt=conn.prepareStatement(sql);
-				pstmt.setString(1, "%"+sangpum+"%");
-				
-				rs=pstmt.executeQuery();
-				
-				while(rs.next()) {
-					ShopDto dto=new ShopDto();
+		//서치
+				public List<ShopDto> getSearchSang(String sangpum){
+					List<ShopDto> list=new ArrayList<>();
+					Connection conn=db.getConnection();
+					PreparedStatement pstmt=null;
+					ResultSet rs=null;
 					
-					dto.setShopnum(rs.getString("shopnum"));
-					dto.setCategory(rs.getString("category"));
-					dto.setPhoto(rs.getString("photo"));
-					dto.setPrice(rs.getInt("price"));
-					dto.setSangpum(rs.getString("sangpum"));
-					dto.setIpgoday(rs.getString("ipgoday"));
+					String sql="select * from shop where sangpum like ?";
 					
-					list.add(dto);
+					try {
+						pstmt=conn.prepareStatement(sql);
+						pstmt.setString(1, "%"+sangpum+"%");
+						
+						rs=pstmt.executeQuery();
+						
+						while(rs.next()) {
+							ShopDto dto=new ShopDto();
+							
+							dto.setShopnum(rs.getString("shopnum"));
+							dto.setCategory(rs.getString("category"));
+							dto.setPhoto(rs.getString("photo"));
+							dto.setPrice(rs.getInt("price"));
+							dto.setSangpum(rs.getString("sangpum"));
+							dto.setIpgoday(rs.getString("ipgoday"));
+							dto.setLikes(rs.getInt("likes"));
+							list.add(dto);
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally {
+						db.dbClose(rs, pstmt, conn);
+					}
+					return list;
 				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally {
-				db.dbClose(rs, pstmt, conn);
-			}
-			return list;
-		}
 		
 		public List<ShopDto> getbest(){
 			List<ShopDto>list=new ArrayList<>();

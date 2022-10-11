@@ -1,3 +1,4 @@
+
 <%@page import="java.text.NumberFormat"%>
 <%@page import="data.dto.ShopDto"%>
 <%@page import="java.util.List"%>
@@ -38,6 +39,19 @@ font-size: 27px;
 cursor: pointer;
 }
 </style>
+<script type="text/javascript">
+$(function(){
+   
+   $("a.godetail").click(function(){
+   
+   var shopnum=$(this).attr("shopnum");
+   
+   //디테일페이지로 이동
+   location.href="index.jsp?main=teashop/shopdetail.jsp?shopnum="+shopnum;
+   });
+});
+</script>
+
 </head>
 <body>
 
@@ -143,4 +157,5 @@ List<ShopDto>list=dao.getSearchSang(sangpum);
     </tr>
 </table>
 </body>
+
 </html>
