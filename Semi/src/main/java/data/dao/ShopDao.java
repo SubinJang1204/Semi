@@ -112,7 +112,145 @@ public int getTotalCount() {
 	}
 
 	//전체 갯수 반환
+	public List<ShopDto> getAllSangpums(){
+		List<ShopDto>list=new ArrayList<>();
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from shop order by shopnum desc";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ShopDto dto=new ShopDto();
+				dto.setShopnum(rs.getString("shopnum"));
+				dto.setCategory(rs.getString("category"));
+				dto.setPhoto(rs.getString("photo"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setSangpum(rs.getString("sangpum"));
+				dto.setIpgoday(rs.getString("ipgoday"));
+				dto.setLikes(rs.getInt("likes"));
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
 	
+	//가격높은순
+	public List<ShopDto> getpriceDescSangpums(){
+		List<ShopDto>list=new ArrayList<>();
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from shop order by price desc";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ShopDto dto=new ShopDto();
+				dto.setShopnum(rs.getString("shopnum"));
+				dto.setCategory(rs.getString("category"));
+				dto.setPhoto(rs.getString("photo"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setSangpum(rs.getString("sangpum"));
+				dto.setIpgoday(rs.getString("ipgoday"));
+				dto.setLikes(rs.getInt("likes"));
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
+	
+	
+	//가격낮은순
+		public List<ShopDto> getpriceAscSangpums(){
+			List<ShopDto>list=new ArrayList<>();
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			
+			String sql="select * from shop order by price";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				rs=pstmt.executeQuery();
+				
+				while(rs.next()) {
+					ShopDto dto=new ShopDto();
+					dto.setShopnum(rs.getString("shopnum"));
+					dto.setCategory(rs.getString("category"));
+					dto.setPhoto(rs.getString("photo"));
+					dto.setPrice(rs.getInt("price"));
+					dto.setSangpum(rs.getString("sangpum"));
+					dto.setIpgoday(rs.getString("ipgoday"));
+					dto.setLikes(rs.getInt("likes"));
+					
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				db.dbClose(rs, pstmt, conn);
+			}
+			
+			return list;
+		}
+		//서치
+		public List<ShopDto> getSearchSang(String sangpum){
+			List<ShopDto> list=new ArrayList<>();
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			
+			String sql="select * from shop where sangpum like ?";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, "%"+sangpum+"%");
+				
+				rs=pstmt.executeQuery();
+				
+				while(rs.next()) {
+					ShopDto dto=new ShopDto();
+					
+					dto.setShopnum(rs.getString("shopnum"));
+					dto.setCategory(rs.getString("category"));
+					dto.setPhoto(rs.getString("photo"));
+					dto.setPrice(rs.getInt("price"));
+					dto.setSangpum(rs.getString("sangpum"));
+					dto.setIpgoday(rs.getString("ipgoday"));
+					dto.setLikes(rs.getInt("likes"));
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				db.dbClose(rs, pstmt, conn);
+			}
+			return list;
+		}
 	//onedata
 	public ShopDto getData(String shopnum) {
 		ShopDto dto=new ShopDto();
@@ -134,6 +272,7 @@ public int getTotalCount() {
 				dto.setIpgoday(rs.getString("ipgoday"));
 				dto.setPrice(rs.getInt("price"));
 				dto.setPhoto(rs.getString("photo"));
+				dto.setLikes(rs.getInt("likes"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
