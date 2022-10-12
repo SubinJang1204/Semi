@@ -95,12 +95,17 @@ List<DirectOrderDto> alist=ddao.getOrderList(num);
 
 <div class="cartwrap" style="width:800px;height:200px;margin-left:65px;margin-bottom:50px;display:inline-block;">
 
-<%
 
+<%
+if(alist.size()==0){
+	%>
+	<br><br>
+	<span>내역이 없습니다</span>
+	<%
+}
+else{
 for (int i = 0; i < 4; i++) {
-	DirectOrderDto map = alist.get(i);
-	
-			
+	DirectOrderDto map = alist.get(i);		
 		%>
 		
 		<div class="cart" style="margin-left:20px;width:150px;height:150px;display:inline-block;">
@@ -110,9 +115,10 @@ for (int i = 0; i < 4; i++) {
 		
 		</div>
 	
-		<%
-		}
 		
+			<%
+		}
+}
 		%>
 
 </div>
@@ -122,6 +128,13 @@ for (int i = 0; i < 4; i++) {
 <div class="cartwrap" style="width:800px;height:200px;margin-left:65px;display:inline-block;">
 
 <%
+if(list.size()==0){
+	%>
+	<br><br>
+	<span>내역이 없습니다</span>
+	<%
+}
+else{
 int allmoney = 0;
 NumberFormat nf = NumberFormat.getCurrencyInstance();
 for (int i = 0; i < 4; i++) {
@@ -143,7 +156,7 @@ for (int i = 0; i < 4; i++) {
 	
 		<%
 		}
-		
+}		
 		%>
 
 </div>
