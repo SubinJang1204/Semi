@@ -15,6 +15,9 @@
 <%
 String shopnum=request.getParameter("shopnum");
 String num=request.getParameter("num");
+String photo=request.getParameter("photo");
+String sangpum=request.getParameter("sangpum");
+String price=request.getParameter("price");
 //로그인상태
 String loginok=(String)session.getAttribute("loginok");
 //로그인한 아이디
@@ -25,6 +28,9 @@ String myid=(String)session.getAttribute("myid");
 <table class="table table-bordered" style="width:600px;">
 <input type="hidden" name="shopnum" value="<%=shopnum%>">
 <input type="hidden" name="num" value="<%=num%>">
+<input type="hidden" name="photo" value="<%=photo%>">
+<input type="hidden" name="sangpum" value="<%=sangpum%>">
+<input type="hidden" name="price" value="<%=price%>">
 <tr>
 <td>
 받는 분 <input type="text" name="receiver">

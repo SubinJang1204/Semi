@@ -8,6 +8,9 @@ public class DirectOrderDto {
 
 	private String shopnum;
 	private String num;
+	private String photo;
+	private String sangpum;
+	private int price;
 	private String receiver;
 	private String addr;
 	private String hp;
@@ -34,6 +37,26 @@ public class DirectOrderDto {
 	}
 	public void setNum(String num) {
 		this.num = num;
+	}
+	
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
+	public String getSangpum() {
+		return sangpum;
+	}
+	public void setSangpum(String sangpum) {
+		this.sangpum = sangpum;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public String getReceiver() {
 		return receiver;

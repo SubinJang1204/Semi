@@ -113,16 +113,16 @@ no=totalCount-(currentPage-1)*perPage;
 %>
 <body>
 
-<div class="w3-container">
+
 
 
 <form name="frm" id="frm">
-
+<div class="w3-container">
    <!-- hidden으로 장바구니db에 넣어야할것  -->
-<input type="text" name="shopnum" value="<%=shopnum%>">
-<input type="text" name="num" value="<%=num%>">
+<input type="hidden" name="shopnum" value="<%=shopnum%>">
+<input type="hidden" name="num" value="<%=num%>">
 
-<table style="width: 1100px; height: 700px;" id="detail">
+<table style="width: 1100px; height: 700px;" id="detail" >
    <tr>
       <td>
          <div id="photo" style="margin-right: 100px;">
@@ -131,9 +131,27 @@ no=totalCount-(currentPage-1)*perPage;
          </div>
          <h3 style="float: left; font-size: 25pt; margin-top: 50px;">리뷰 평점</h3>
          <h3 style="float: right; font-size: 25pt; margin-top: 50px; margin-right: 150px;">
-         <%=dao.getReviewAvg(shopnum)%>
+       <%switch(dao.getReviewAvg(shopnum)){
+         case 1 :%>
+         <span class="glyphicon glyphicon-star" style="color: red;"><span class="glyphicon glyphicon-star" style="color: gray;"><span class="glyphicon glyphicon-star" style="color: gray;">         <%
+             break;
+         case 2 : 
+            %>
+             <span class="glyphicon glyphicon-star" style="color: red;"></span><span class="glyphicon glyphicon-star" style="color: red;"><span class="glyphicon glyphicon-star" style="color: gray;">
+             
+          <% 
+             break;  
+         case 3 : 
+            %>
+            <span class="glyphicon glyphicon-star" style="color: red;"><span class="glyphicon glyphicon-star" style="color: red;"><span class="glyphicon glyphicon-star" style="color: red;">          <%
+             break; 
+         default :
+            %>
+            <span class="glyphicon glyphicon-star" style="color: gray;"><span class="glyphicon glyphicon-star" style="color: gray;"><span class="glyphicon glyphicon-star" style="color: gray;">          <%
+              }%>
          </h3>
       </td>
+
       <td style="width: 300px;">
          <div>
          <h3  style="font-size: 12pt; left: 0px; text-align: left;">카테고리> <%=dto.getCategory() %></h3>
@@ -144,16 +162,18 @@ no=totalCount-(currentPage-1)*perPage;
          <div class="icon" style="float: left; text-align: left;">
          <span onclick="clip(); return false;" style="cursor: pointer;" class="glyphicon glyphicon-paperclip"></span>&nbsp;&nbsp;
          <span onclick="document.getElementById('id01').style.display='block'"
-        	 style="cursor: pointer;" class="w3-button glyphicon glyphicon-share"></span>&nbsp;&nbsp;
+            style="cursor: pointer;" class="w3-button glyphicon glyphicon-share"></span>&nbsp;&nbsp;
          <span class="like" style="margin-left: 20px; cursor: pointer;" shopnum="<%=dto.getShopnum()%>">추천</span>       
          <span class="likes"><%=dto.getLikes()%></span>
-	     <span class="glyphicon glyphicon-heart" style="color: red; font-size: 0px;"></span>&nbsp;&nbsp;<br>
+        <span class="glyphicon glyphicon-heart" style="color: red; font-size: 0px;"></span>&nbsp;&nbsp;<br>
          <h3 style="float: right;">가격: <%=nf.format(dto.getPrice()) %></h3><br><br>
-     	 <hr>
+         <hr>
          
-         <h3 style="float: left;">구매수량</h3>
+        <h3 style="float: left;">구매수량</h3>
          <div style="float: right;">
-         <input type="number" min="1" max="10" value="1" step="1" name="cnt">
+         <h3 onclick='count("minus")' class="glyphicon glyphicon-minus" style="cursor: pointer;" value='-'></h3>
+         <span id='cnt' name="cnt" style="display:inline; font-size: 23pt;">1</span>   
+         <h3 onclick='count("plus")' class="glyphicon glyphicon-plus" style="cursor: pointer;" value='+'></h3>
          </div>
          <br><br><br>
          <select onchange="count('re')" style="width: 400px; height: 50px;" name="pojang" id="pojang">
@@ -162,6 +182,7 @@ no=totalCount-(currentPage-1)*perPage;
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +0원</option>
            <option value="2000">포장함  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +2000원</option>
+
          </select>
          </div>
          <div style="float: right; margin-top: 10px;">
@@ -179,7 +200,7 @@ no=totalCount-(currentPage-1)*perPage;
       
             <button type="button" class="btn"
             style="width: 150px; height: 70px; border: 1px solid black; font-size: 12pt;  background-color: #FF7BAC
-;" onclick="location.href='index.jsp?main=teashop/directorder.jsp?shopnum=<%=shopnum%>&num=<%=num%>'">바로구매</button>
+;" onclick="location.href='index.jsp?main=teashop/directorder.jsp?shopnum=<%=shopnum%>&num=<%=num%>&photo=<%=dto.getPhoto()%>&sangpum=<%=dto.getSangpum()%>&price=<%=dto.getPrice()%>'">바로구매</button>
          
          </div>
       </td>
@@ -202,7 +223,8 @@ no=totalCount-(currentPage-1)*perPage;
 
   <div id="menu1">
   <h3>상품상세</h3>
-  <img alt="" src="images2/런던셀렉션1.jpg">
+  <img alt=""  src="images2/<%=dto.getSangsae() %>">
+
 
   </div>
   <hr>
@@ -242,18 +264,41 @@ no=totalCount-(currentPage-1)*perPage;
 			
 			%>
 			
-			<tr style="height: 200px; ">
+			<tr style="height: 200px; cursor: pointer;" onclick="document.getElementById('id02').style.display='block'" id="idx">
+
 			    <td align="center" style="line-height: 200px;"><img src="save/<%=rdto.getPhoto() %>" style="width:100px;"></td>
 				<td align="center" style="line-height: 200px;"><%=rdto.getWriter() %></td>
 				<td align="center" style="line-height: 200px;"><%=rdto.getContent() %>
 				<td align="center" style="line-height: 200px;"><%=sdf.format(rdto.getWriteday()) %></td>
-				<td align="center" style="line-height: 200px;"> <%=tot%></td>
-			</tr>
-		<%}
-		%>
-</table></center>
+				<td class="hidden" id="hidden1"><%=rdto.getDelivery() %></td>
+            <td class="hidden" id="hidden2"><%=rdto.getSmell() %></td>
+            <td class="hidden" id="hidden3"><%=rdto.getTaste() %></td>
+<td align="center" style="line-height: 200px;" ><%switch(tot){
+         case 1 :%>
+         <span class="glyphicon glyphicon-star" style="color: red;"><span class="glyphicon glyphicon-star" style="color: gray;"><span class="glyphicon glyphicon-star" style="color: gray;">         <%
+             break;
+         case 2 : 
+            %>
+             <span class="glyphicon glyphicon-star" style="color: red;"></span><span class="glyphicon glyphicon-star" style="color: red;"><span class="glyphicon glyphicon-star" style="color: gray;">
+             
+          <% 
+             break;  
+         case 3 : 
+            %>
+            <span class="glyphicon glyphicon-star" style="color: red;"><span class="glyphicon glyphicon-star" style="color: red;"><span class="glyphicon glyphicon-star" style="color: red;">          <%
+             break; 
+         default :
+            %>
+            <span class="glyphicon glyphicon-star" style="color: gray;"><span class="glyphicon glyphicon-star" style="color: gray;"><span class="glyphicon glyphicon-star" style="color: gray;">          <%
+              }%></td>
+              
+         </tr>
+      <%}
+      %>
+</table>
+</center>
 
-<hr>
+
 <!-- 페이징처리 -->
 
 <div style="width: 800px; text-align: center; margin-top: 30px;" class="container">
@@ -319,11 +364,77 @@ no=totalCount-(currentPage-1)*perPage;
       </div>
     </div>
   </div>
+  
 </div>
+<div id="id02" class="w3-modal" >
+    <div class="w3-modal-content w3-card-4" style="width: 1000px; height: 650px;">
+      <header class="w3-container w3-teal"> 
+        <span onclick="document.getElementById('id02').style.display='none'" 
+        class="w3-button w3-display-topright">&times;</span>
+        <h2>상세보기</h2>
+      </header>
+      <div class="w3-container">
+    <%
+      //날짜형식
+   
+         
+         %>
+           <table class="table table-bordered" style="width: 900px; height:300px; ; margin-left: 35px; margin-top: 10px;">
+         <caption><b style="font-size: 20pt;">상세리뷰</b></caption>
+            <tr>
+               <td style="width: 120px; height:40px; line-height:40x; background-color: beige"><b>작 성 자</b></td>
+               <td>
+                  <span id="bookId" style="float: left;"></span>
+                  <span id="bookId2" style="float: right;"></span>
+               </td>
+            </tr>   
+            <tr>
+               <td style="width: 120px; height: 200px; line-height:200px; background-color: beige;"><b>내 용</b></td>
+               <td>
+                  <span style="float: left;" id="bookId1"></div>
+               </td>
+            </tr>
+               </table>
+               
+         <table style="width: 900px; margin-left: 35px; margin-top: 0px;">
+            <tr align="center">
+               <td style="width: 150px; background-color: beige; border: 0px;"><b>맛</b><br>
+                  <img alt="" src="images2/taste.png" style="width: 100px; height: 100px;"><br>
+                  <span id="bookId3"></span>
+               </td>
+               <td style="width: 150px; background-color: beige; border: 0px;"><b>향</b><br>
+                  <img alt="" src="images2/smell.png" style="width: 100px; height: 100px;"><br>
+                  <span id="bookId4"></span>
+               </td>
+               <td style="width: 150px; background-color: beige; border: 0px;"><b>배달</b><br>
+                  <img alt="" src="images2/delivery.png" style="width: 100px; height: 100px;"><br>
+                  <span id="bookId5"></span>
+         
+               </td>
+            </tr>
+      </table>
+           
+      </div>
+    </div>
+  </div>
+
 </center>
 
 
 <script type="text/javascript">
+$(document).on("click", "#idx", function () {
+    
+    $("#bookId").text($(this).find("td:eq(0)").text());
+    $("#bookId1").text($(this).find("td:eq(1)").text());
+    $("#bookId2").text($(this).find("td:eq(2)").text()); 
+    $("#bookId3").text($(this).find("td:eq(3)").text()); 
+    $("#bookId4").text($(this).find("td:eq(4)").text()); 
+    $("#bookId5").text($(this).find("td:eq(5)").text()); 
+    
+    // As pointed out in comments, 
+    // it is superfluous to have to manually call the modal.
+    // $('#addBookDialog').modal('show');
+});
 
 //좋아요
 $("span.like").click(function(){
@@ -378,8 +489,8 @@ function count(type)  {
      const resultElement = document.getElementById('cnt');
      const resultElement2 = document.getElementById('tot');
      var pojang = $('#pojang option:selected').val();
-	 var num = parseInt(pojang, 0);
-	 
+    var num = parseInt(pojang, 0);
+    
      // 현재 화면에 표시된 값
      let number = resultElement.innerText;
      let number2 = resultElement2.innerText;
@@ -406,24 +517,24 @@ function count(type)  {
      
      // 결과 출력
      resultElement.innerText = number;
-   	 resultElement2.innerText = "₩"+number2.toLocaleString();
+       resultElement2.innerText = "₩"+number2.toLocaleString();
 
-     	 
+         
    }
    
    
 //url 복사 
 function clip(){
 
-	var url = '';
-	var textarea = document.createElement("textarea");
-	document.body.appendChild(textarea);
-	url = window.document.location.href;
-	textarea.value = url;
-	textarea.select();
-	document.execCommand("copy");
-	document.body.removeChild(textarea);
-	alert("URL이 복사되었습니다.")
+   var url = '';
+   var textarea = document.createElement("textarea");
+   document.body.appendChild(textarea);
+   url = window.document.location.href;
+   textarea.value = url;
+   textarea.select();
+   document.execCommand("copy");
+   document.body.removeChild(textarea);
+   alert("URL이 복사되었습니다.")
 }
 //트위터 공유
 function shareTwitter() {

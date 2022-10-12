@@ -1,3 +1,5 @@
+<%@page import="data.dto.DirectOrderDto"%>
+<%@page import="data.dao.DirectOrderDao"%>
 <%@page import="data.dao.ReviewDao"%>
 <%@page import="data.dto.ReviewDto"%>
 <%@page import="data.dto.ShopDto"%>
@@ -55,6 +57,11 @@ ShopDto sdto=sdao.getData(num);
 
 List<HashMap<String, String>> list = sdao.getCartList(id);
 
+DirectOrderDao ddao=new DirectOrderDao();
+DirectOrderDto ddto=ddao.getDatas(num);
+
+List<DirectOrderDto> alist=ddao.getOrderList(num);
+
 
 %>
 <div style="position:absolute;top:-50px;z-index:-10;width:1920px;height:100px;background-color:white;"></div>
@@ -72,7 +79,7 @@ List<HashMap<String, String>> list = sdao.getCartList(id);
 
 <p style="font-size:20px;color:#FF7BAC;margin-top:-25px;"><b>구매 관리</b></p><br>
 <p style="font-size:17px;margin-top:-10px;" class="menuhover"><a href="index.jsp?main=teashop/mycart.jsp?myid=<%=myid%>&shopnum=<%=sdto.getShopnum()%>" style="text-decoration:none">나의 장바구니</a></p><br>
-<p style="font-size:17px;margin-top:-20px;" class="menuhover"><a href="index.jsp?main=mypage/myreview.jsp?myid=<%=myid%>">리뷰 관리</p>
+<p style="font-size:17px;margin-top:-20px;" class="menuhover"><a href="index.jsp?main=mypage/myorder.jsp?myid=<%=myid%>">전체 결제 내역</p>
 <hr>
 <p style="font-size:20px;color:#FF7BAC;"><b>회원 관리</b></p><br>
 <p style="font-size:17px;margin-top:-10px;" class="menuhover"><a href="index.jsp?main=mypage/
@@ -84,7 +91,33 @@ List<HashMap<String, String>> list = sdao.getCartList(id);
 
 <div style="float:left;margin-left:80px;margin-top:-200px;width:930px;height:660px;text-align:left">
 
-<h4 style="color:#FF7BAC;font-size:1.3em;margin-left:30px;margin-top:30px;"><b>최근 장바구니 내역</b></h4>
+<h4 style="color:#FF7BAC;font-size:1.3em;margin-left:30px;margin-top:30px;"><b>최근 구매 내역</b></h4>
+
+<div class="cartwrap" style="width:800px;height:200px;margin-left:65px;margin-bottom:50px;display:inline-block;">
+
+<%
+
+for (int i = 0; i < 4; i++) {
+	DirectOrderDto map = alist.get(i);
+	
+			
+		%>
+		
+		<div class="cart" style="margin-left:20px;width:150px;height:150px;display:inline-block;">
+		
+		<img src="images2/<%=map.getPhoto() %>" style="width:150px;height:150px;cursor:pointer"onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=map.getShopnum()%>'">
+		<b><%=map.getSangpum()%></b><br>&nbsp;<span class="glyphicon glyphicon-pencil" style="color:#FF7BAC;font-size:13px;cursor:pointer" onclick="location.href='index.jsp?main=teashop/reviewinsert.jsp?shopnum=<%=map.getShopnum()%>'">리뷰작성</span>
+		
+		</div>
+	
+		<%
+		}
+		
+		%>
+
+</div>
+<hr>
+<h4 style="color:#FF7BAC;font-size:1.3em;margin-left:30px;margin-top:45px;"><b>최근 장바구니 내역</b></h4>
 
 <div class="cartwrap" style="width:800px;height:200px;margin-left:65px;display:inline-block;">
 
@@ -101,8 +134,8 @@ for (int i = 0; i < 4; i++) {
 		
 		<img src="images2/<%=map.get("photo")%>" class="photo"
 						width="150" height="150" onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=map.get("shopnum")%>'" style="cursor:pointer">
+						<b><%=map.get("sangpum")%></b>
 						
-						<b><%=map.get("sangpum")%></b>&nbsp;<span class="glyphicon glyphicon-pencil" style="color:#FF7BAC;font-size:13px;cursor:pointer" onclick="location.href='index.jsp?main=teashop/reviewinsert.jsp?shopnum=<%=map.get("shopnum")%>'">리뷰작성</span>
 					</h4>
 		
 		
@@ -112,38 +145,10 @@ for (int i = 0; i < 4; i++) {
 		}
 		
 		%>
-<hr>
+
 </div>
 
-<h4 style="color:#FF7BAC;font-size:1.3em;margin-left:30px;margin-top:30px;"><b>최근 구매 내역</b></h4>
 
-<div class="cartwrap" style="width:800px;height:200px;margin-left:65px;display:inline-block;">
-
-<%
-
-for (int i = 0; i < 4; i++) {
-	HashMap<String, String> map = list.get(i);
-	int cnt = Integer.parseInt(map.get("cnt"));
-			
-		%>
-		
-		<div class="cart" style="margin-left:20px;width:150px;height:150px;display:inline-block;">
-		
-		<img src="images2/<%=map.get("photo")%>" class="photo"
-						width="150" height="150" onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=map.get("shopnum")%>'" style="cursor:pointer">
-						
-						<b><%=map.get("sangpum")%></b>&nbsp;<span class="glyphicon glyphicon-pencil" style="color:#FF7BAC;font-size:13px;cursor:pointer" onclick="location.href='index.jsp?main=teashop/reviewinsert.jsp?shopnum=<%=map.get("shopnum")%>'">리뷰작성</span>
-					</h4>
-		
-		
-		</div>
-	
-		<%
-		}
-		
-		%>
-<hr>
-</div>
 
 </div>
 </div>

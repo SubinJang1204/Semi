@@ -94,7 +94,8 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">
 					
 					
-					<img src="images2/<%=photo%>" class="photo" style="width: 450px; height: 450px;">
+					<img src="images2/<%=photo%>" class="photo" style="width: 450px; height: 450px;"onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum()%>'">
+
 					<br>
 					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span><br></a>
 					
@@ -140,7 +141,8 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">
 					
 					
-					<img src="images2/<%=photo%>" class="photo" style="width: 450px;">
+					<img src="images2/<%=photo%>" class="photo" style="width: 450px;"onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum()%>'">
+
 					<br>
 					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span><br></a>
 					
@@ -186,7 +188,8 @@ List<ShopDto>alist=dao.getpriceAscSangpums();
 				<a shopnum=<%=dto.getShopnum()%> style="cursor: pointer;" class="godetail">
 					
 					
-					<img src="images2/<%=photo%>" class="photo" style="width: 450px;">
+					<img src="images2/<%=photo%>" class="photo" style="width: 450px;"onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=dto.getShopnum()%>'">
+
 					<br>
 					<span style="color: black; font-size: 23px;"><%=dto.getSangpum() %></span><br></a>
 					

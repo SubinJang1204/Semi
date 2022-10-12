@@ -24,7 +24,7 @@ public void insertShop(ShopDto dto) {
 		PreparedStatement pstmt=null;
 		
 		//나중에 좋아요 이런 애들도 0값  넣어주면 됨
-		String sql="insert into shop (category,sangpum,photo,price,ipgoday) values(?,?,?,?,?)";
+		String sql="insert into shop (category,sangpum,photo,price,ipgoday,sangsae) values(?,?,?,?,?,?)";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -35,7 +35,8 @@ public void insertShop(ShopDto dto) {
 			pstmt.setString(3, dto.getPhoto());
 			pstmt.setInt(4, dto.getPrice());
 			pstmt.setString(5, dto.getIpgoday());
-			
+			pstmt.setString(6, dto.getSangsae());
+
 			pstmt.execute();
 			
 			//실행
@@ -97,7 +98,8 @@ public int getTotalCount() {
 				dto.setPhoto(rs.getString("photo"));
 				dto.setPrice(rs.getInt("price"));
 				dto.setIpgoday(rs.getString("ipgoday"));
-				
+				 dto.setSangsae(rs.getString("sangsae"));
+
 				//리스트에 추가
 				list.add(dto);
 			}
@@ -134,6 +136,8 @@ public int getTotalCount() {
 				dto.setPrice(rs.getInt("price"));
 				dto.setPhoto(rs.getString("photo"));
 				dto.setLikes(rs.getInt("likes"));
+				dto.setSangsae(rs.getString("sangsae"));
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -215,45 +219,7 @@ public List<HashMap<String, String>> getCartList(String id){
 	return list;
 }
 
-//리뷰출력
-public List<HashMap<String, String>> getAnswerList(String id){
-	
-	List<HashMap<String, String>> list=new ArrayList<HashMap<String, String>>();
-	
-	Connection conn=db.getConnection();
-	PreparedStatement pstmt=null;
-	ResultSet rs=null;
-	
-	String sql="select r.writer, s.sangpum, s.shopnum, s.photo, r.content, r.writeday "
-			+ "from reviewanswer r,  shop s, member m"
-					+ " where r.shopnum=s.shopnum and r.writer=m.id and m.id=?" ;
-	
-	try {
-		pstmt=conn.prepareStatement(sql);
-		pstmt.setString(1, id);
-		rs=pstmt.executeQuery();
-		
-		while(rs.next()) {
-			HashMap<String, String> map=new HashMap<String, String>();
-			
-			map.put("id", rs.getString("id"));
-			map.put("sangpum", rs.getString("sangpum"));
-			map.put("shopnum", rs.getString("shopnum"));
-			map.put("photo", rs.getString("photo"));			
-			map.put("content", rs.getString("content"));		
-			map.put("writerday", rs.getString("writeday"));
-			
-			
-			list.add(map);
-		}
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}finally {
-		db.dbClose(rs, pstmt, conn);
-	}
-	return list;
-}
+
 
 //장바구니에서 체크한 상품 삭제
 public void deleteCart(String idx) {
@@ -297,7 +263,8 @@ public void deleteCart(String idx) {
 				dto.setSangpum(rs.getString("sangpum"));
 				dto.setIpgoday(rs.getString("ipgoday"));
 				dto.setLikes(rs.getInt("likes"));
-				
+				dto.setSangsae(rs.getString("sangsae"));
+
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -333,7 +300,8 @@ public void deleteCart(String idx) {
 					dto.setSangpum(rs.getString("sangpum"));
 					dto.setIpgoday(rs.getString("ipgoday"));
 					dto.setLikes(rs.getInt("likes"));
-					
+					 dto.setSangsae(rs.getString("sangsae"));
+
 					list.add(dto);
 				}
 			} catch (SQLException e) {
