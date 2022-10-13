@@ -21,7 +21,7 @@ cursor:pointer;
 <div style="margin-top:200px;">
 
 
-<div style="display:inline-block;" onclick="location.href='index.jsp?main=manager/member/member.jsp'">
+<div style="display:inline-block;" onclick="location.href='index.jsp?main=manager/member/memberlist.jsp'">
 <img src="images/manager_member.png"><br>
 
 <span><h4><b>회원 관리</b></h4></span>

@@ -20,10 +20,10 @@
 
     String num=request.getParameter("num");
 	String name= request.getParameter("name");
-	String id = request.getParameter("id");
+	String id= request.getParameter("id");
 	String hp = request.getParameter("hp");
 	String addr = request.getParameter("addr");
-	String email= request.getParameter("email1")+"@"+request.getParameter("email2");
+	String email= request.getParameter("email")+"@"+request.getParameter("email2");
 
 	//입력데이타를  dto로 묶기
 	MemberDto dto = new MemberDto();
@@ -40,7 +40,7 @@
 	dao.updateMember(dto);
 
 	//목록으로 이동-url 주소 바뀜
-	response.sendRedirect("../index.jsp?main=mypage/mypage.jsp");
+	response.sendRedirect("../../index.jsp?main=manager/member/memberlist.jsp");
 	%>
 </body>
 </html>

@@ -171,10 +171,9 @@ no=totalCount-(currentPage-1)*perPage;
          
         <h3 style="float: left;">구매수량</h3>
          <div style="float: right;">
-         <h3 onclick='count("minus")' class="glyphicon glyphicon-minus" style="cursor: pointer;" value='-'></h3>
-         <span id='cnt' name="cnt" style="display:inline; font-size: 23pt;">1</span>   
-         <h3 onclick='count("plus")' class="glyphicon glyphicon-plus" style="cursor: pointer;" value='+'></h3>
+         <input type="number" id="cnt" name="cnt" min="1" placeholder="1" onchange="count()" style="display:inline; width:100px; font-size: 23pt;">
          </div>
+
          <br><br><br>
          <select onchange="count('re')" style="width: 400px; height: 50px;" name="pojang" id="pojang">
            <option value="0">포장가능</option>
@@ -186,21 +185,13 @@ no=totalCount-(currentPage-1)*perPage;
          </select>
          </div>
          <div style="float: right; margin-top: 10px;">
-         <br>
-         <h3 style="color: darkgreen; font-weight: bolder;">상품금액 합계</h3>
-         <h3 id="tot" style="float: right; margin-top: 3px; color: #cc0000;"><%=nf.format(dto.getPrice()) %></h3>
-         </div>
-         <div style="margin-top: 20px; margin-left: 30px; float: left;">
-                     
-             <button type="button" class="btn" 
-            style="width: 100px; height: 70px; border: 1px solid black; background-color: white; font-size: 12pt;" id="btnpresent">선물하기</button>
-            
+   
             <button type="button" class="btn"
             style="width: 100px; height: 70px; border: 1px solid black; font-size: 12pt; color: white; background-color: black;" id="btncart">장바구니</button>
       
             <button type="button" class="btn"
-            style="width: 150px; height: 70px; border: 1px solid black; font-size: 12pt;  background-color: #FF7BAC
-;" onclick="location.href='index.jsp?main=teashop/directorder.jsp?shopnum=<%=shopnum%>&num=<%=num%>&photo=<%=dto.getPhoto()%>&sangpum=<%=dto.getSangpum()%>&price=<%=dto.getPrice()%>'">바로구매</button>
+            style="width: 150px; height: 70px; border: 1px solid black; font-size: 12pt;  background-color: #FF7BAC;" 
+            onclick="location.href='index.jsp?main=teashop/directorder.jsp?shopnum=<%=shopnum%>&num=<%=num%>&photo=<%=dto.getPhoto()%>&sangpum=<%=dto.getSangpum()%>&price=<%=dto.getPrice()%>'">바로구매</button>
          
          </div>
       </td>
@@ -360,7 +351,7 @@ no=totalCount-(currentPage-1)*perPage;
       </header>
       <div class="w3-container">
         <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">트위터</a><br>
-		<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">페이스북</a>   
+      <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">페이스북</a>   
       </div>
     </div>
   </div>
@@ -409,7 +400,6 @@ no=totalCount-(currentPage-1)*perPage;
                <td style="width: 150px; background-color: beige; border: 0px;"><b>배달</b><br>
                   <img alt="" src="images2/delivery.png" style="width: 100px; height: 100px;"><br>
                   <span id="bookId5"></span>
-         
                </td>
             </tr>
       </table>
@@ -424,12 +414,12 @@ no=totalCount-(currentPage-1)*perPage;
 <script type="text/javascript">
 $(document).on("click", "#idx", function () {
     
-    $("#bookId").text($(this).find("td:eq(0)").text());
-    $("#bookId1").text($(this).find("td:eq(1)").text());
-    $("#bookId2").text($(this).find("td:eq(2)").text()); 
-    $("#bookId3").text($(this).find("td:eq(3)").text()); 
-    $("#bookId4").text($(this).find("td:eq(4)").text()); 
-    $("#bookId5").text($(this).find("td:eq(5)").text()); 
+    $("#bookId").text($(this).find("td:eq(1)").text());
+    $("#bookId1").text($(this).find("td:eq(2)").text());
+    $("#bookId2").text($(this).find("td:eq(3)").text()); 
+    $("#bookId3").text($(this).find("td:eq(4)").text()); 
+    $("#bookId4").text($(this).find("td:eq(5)").text()); 
+    $("#bookId5").text($(this).find("td:eq(6)").text()); 
     
     // As pointed out in comments, 
     // it is superfluous to have to manually call the modal.
@@ -438,90 +428,75 @@ $(document).on("click", "#idx", function () {
 
 //좋아요
 $("span.like").click(function(){
-	
-	var shopnum=$(this).attr("shopnum");
-	var tag=$(this);
-	console.log(shopnum);
-	
-	$.ajax({
-		type:"get",
-		dataType:"json",
-		url:"teashop/ajaxlikes.jsp",
-		data:{"shopnum":shopnum},
-		success:function(res){
-			//alert(res.chu);
-			tag.next().text(res.likes);
-			tag.next().next().animate({"font-size":"15px"},500,function(){
-				//애니메이션이 끝난후 다시 글골크기는 0px로 변경
-				$(this).css("font-size","0px");
-			});
-		}
-	});
+   
+   var shopnum=$(this).attr("shopnum");
+   var tag=$(this);
+   console.log(shopnum);
+   
+   $.ajax({
+      type:"get",
+      dataType:"json",
+      url:"teashop/ajaxlikes.jsp",
+      data:{"shopnum":shopnum},
+      success:function(res){
+         //alert(res.chu);
+         tag.next().text(res.likes);
+         tag.next().next().animate({"font-size":"15px"},500,function(){
+            //애니메이션이 끝난후 다시 글골크기는 0px로 변경
+            $(this).css("font-size","0px");
+         });
+      }
+   });
 });
 
 $("#btncart").click(function(){
-	//form태그의 모든 값 가져오기
-	var formdata=$("#frm").serialize();
-	
-	alert(formdata);
-	//alert(num);
-	
-	$.ajax({
-		
-		type:"post",
-		dataType:"html",
-		url:"teashop/detailproc.jsp",
-		data:formdata,
-		success:function(){
-			//alert("success");
-			
-			var a=confirm("장바구니에 저장할까요?")
-			if(a){
-				location.href="index.jsp?main=teashop/mycart.jsp";
-			}
-		}
-	});
-});
-
-//갯수 
-function count(type)  {
-     // 결과를 표시할 element
-     const resultElement = document.getElementById('cnt');
-     const resultElement2 = document.getElementById('tot');
-     var pojang = $('#pojang option:selected').val();
-    var num = parseInt(pojang, 0);
-    
-     // 현재 화면에 표시된 값
-     let number = resultElement.innerText;
-     let number2 = resultElement2.innerText;
-     
-     
-     // 더하기/빼기
-     if(type === 'plus') {
-       number = parseInt(number) + 1;
-       number2 = parseInt(number) * <%=dto.getPrice()%> + num;
-       
-       
-     }else if(type === 'minus')  {
-       number = parseInt(number) - 1;
-       number2 = parseInt(number) * <%=dto.getPrice()%> + num;
-
-       if(number<0)
-          {
-             number=0;
-             number2=0;
-          }
-     }else if(type === 're'){
-      number2 = parseInt(number) * <%=dto.getPrice()%> + num;
-     }
-     
-     // 결과 출력
-     resultElement.innerText = number;
-       resultElement2.innerText = "₩"+number2.toLocaleString();
-
-         
-   }
+   //form태그의 모든 값 가져오기
+   var formdata=$("#frm").serialize();
    
+   alert(formdata);
+   //alert(num);
+   
+   $.ajax({
+      
+      type:"post",
+      dataType:"html",
+      url:"teashop/detailproc.jsp",
+      data:formdata,
+      success:function(){
+         //alert("success");
+         
+         var a=confirm("장바구니에 저장할까요?")
+         if(a){
+            location.href="index.jsp?main=teashop/mycart.jsp";
+         }
+      }
+   });
+
+});
+$("#btnorder").click(function(){
+	   //form태그의 모든 값 가져오기
+	   var formdata=$("#frm").serialize();
+	   
+	   alert(formdata);
+	   //alert(num);
+	   
+	   $.ajax({
+	      
+	      type:"post",
+	      dataType:"html",
+	      url:"teashop/detailorder.jsp",
+	      data:formdata,
+	      success:function(){
+	         //alert("success");
+	         
+	      
+	       
+	            location.href="index.jsp?main=teashop/detailorder.jsp";
+	        
+	      }
+	   });
+
+	});  
    
 //url 복사 
 function clip(){

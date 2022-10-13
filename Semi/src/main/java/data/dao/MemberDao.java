@@ -239,17 +239,17 @@ public MemberDto getMember(String num) {
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
 		
-		String sql="update member set name=?,hp=?,addr=?,email=? where num=?";
+		String sql="update member set name=?,id=?,hp=?,addr=?,email=? where num=?";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getName());
-		
-			pstmt.setString(2, dto.getHp());
-			pstmt.setString(3, dto.getAddr());
-			pstmt.setString(4, dto.getEmail());
-			pstmt.setString(5, dto.getNum());
+			pstmt.setString(2, dto.getId());
+			pstmt.setString(3, dto.getHp());
+			pstmt.setString(4, dto.getAddr());
+			pstmt.setString(5, dto.getEmail());
+			pstmt.setString(6, dto.getNum());
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

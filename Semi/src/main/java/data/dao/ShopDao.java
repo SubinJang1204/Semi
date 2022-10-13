@@ -48,6 +48,53 @@ public void insertShop(ShopDto dto) {
 		}
 	}
 
+///update
+	public void updateShop(ShopDto dto) {
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="update shop set category=?,sangpum=?,photo=?,price=?,ipgoday=?,sangsae=? where shopnum=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getCategory());
+			pstmt.setString(2, dto.getSangpum());
+			pstmt.setString(3, dto.getPhoto());
+			pstmt.setInt(4, dto.getPrice());
+			pstmt.setString(5, dto.getIpgoday());
+			pstmt.setString(6, dto.getSangsae());
+			pstmt.setString(7, dto.getShopnum());
+			
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+	}
+	
+	//delete
+	public void deleteShop(String shopnum) {
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="delete from shop where shopnum=?";
+		
+		try {
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setString(1,shopnum);
+		pstmt.execute();
+		
+	}catch(SQLException e){
+		e.printStackTrace();
+	}finally {
+		db.dbClose(pstmt, conn);
+	}
+		
+	}
+
 public int getTotalCount() {
 	
 	Connection conn=db.getConnection();

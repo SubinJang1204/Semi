@@ -33,7 +33,7 @@ $(function(){
 		
 		$.ajax({
 			type:"get",
-			url:"member/idcheck.jsp",
+			url:"manager/member/idcheck.jsp",
 			dataType:"json",
 			data:{
 				"id":id
@@ -94,15 +94,15 @@ String email1=st.nextToken();
 String email2=st.nextToken();
 %>
 <body>
-<center>
 <!-- form inline하면 따로 인라인 블록 지정 안 해도 됨!! -->
-<form action="mypage/updateaction.jsp" method="post" class="form-inline" onsubmit="return check(this)" style="margin-top:250px;">
-<table class="table table bordered" style="width:500px;">
-<caption><b>회원가입 수정</b></caption>
+<form action="manager/member/updateaction.jsp" method="post" class="form-inline" onsubmit="return check(this)" style="margin-top:200px;">
 
+<center><caption><h3><b>회원 수정</b></h3></caption></center>
+<br>
+<table class="table table bordered" style="width:1000px;margin:0 auto">
 
 <tr>
-<th width="100">이름</th>
+<th width="100">성함</th>
 <td>
 <input type="text" name="name" class="form-control"
 required="required" style="width:120px" value="<%=dto.getName()%>">
@@ -118,7 +118,7 @@ required="required" style="width:120px" value="<%=dto.getId()%>">
 </tr>
 
 <tr>
-<th width="100">번호</th>
+<th width="100">연락처</th>
 <td>
 <input type="text" name="hp" class="form-control"
 required="required" style="width:200px" value="<%=dto.getHp()%>">
@@ -136,7 +136,7 @@ required="required" style="width:400px">
 <tr>
 <th width="100">이메일</th>
 <td>
-<input type="text" name="email1" class="form-control" 
+<input type="text" name="email" class="form-control" 
 required="required" style="width:80px"  value="<%=email1%>">
 <b>@</b>
 <input type="text" name="email2" id="email2" class="form-control" 
@@ -155,8 +155,8 @@ required="required" style="width:150px"  value="<%=email2%>">
 <tr>
 <td align="center" colspan="2">
 <input type="hidden" name="num" value="<%=num%>">
-<button type="submit" class="btn btn-default" style="width:100px;color:white;background-color:#FF7BAC;border:1px solid #FF7BAC;">
-수정하기&nbsp;<span class="glyphicon glyphicon-edit"></span></button>
+<button type="submit" class="btn btn-default" style="width:100px;">
+수정하기</button>
 <button type="reset" class="btn btn-default" style="width:100px;">
 초기화</button>
 </td>
@@ -164,6 +164,5 @@ required="required" style="width:150px"  value="<%=email2%>">
 
 </table>
 </form>
-</center>
 </body>
 </html>

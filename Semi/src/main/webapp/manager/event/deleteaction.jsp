@@ -13,6 +13,6 @@ SmartDao dao = new SmartDao();
 dao.deleteSmart(num);
 
 //보던 페이지로 이동
-response.sendRedirect("../../index.jsp?main=event/smartlist.jsp?currentPage=" +currentPage);
+response.sendRedirect("../../index.jsp?main=manager/event/smartlist.jsp?currentPage=" +currentPage);
 %>
 

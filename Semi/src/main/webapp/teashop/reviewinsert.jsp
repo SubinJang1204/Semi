@@ -13,14 +13,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	$("span.camera").click(function(){
-		$("#photo").trigger("click");
-	});
+   $("span.camera").click(function(){
+      $("#photo").trigger("click");
+   });
 });
 
 //이미지 미리보기, 사용자함수
 function readURL(input){
-	if (input.files && input.files[0]) {
+   if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
         $('#showimg').attr('src', e.target.result);
@@ -31,9 +31,10 @@ function readURL(input){
 </script>
 <style type="text/css">
  .rating {
-  width: 150px;
+  width: 120px;
   height: 30px;
   padding: 5px 10px;
+  margin-top: 5px; 
   margin: auto;
   border-radius: 30px;
   background: #FFF;
@@ -65,17 +66,17 @@ function readURL(input){
 }
 #rate:not(:checked) > label:hover,
 #rate:not(:checked) > label:hover ~ label {
-  color: #ff7a00;
+  color: #FF7BAC;
 }
 #rate > input:checked + label:hover,
 #rate > input:checked + label:hover ~ label,
 #rate > input:checked ~ label:hover,
 #rate > input:checked ~ label:hover ~ label,
 #rate > label:hover ~ input:checked ~ label {
-  color: #ff7a00;
+  color: #FF7BAC;
 }
 #rate > input:checked ~ label {
-  color: #ff7a00;
+  color: #FF7BAC;
 }
 -webkit-font-smoothing: antialiased;
 </style>
@@ -93,7 +94,7 @@ String shopnum=request.getParameter("shopnum");
 <input type="hidden" value="<%=shopnum %>" name="shopnum">
 
 
-<table style="width:600px;margin-top:200px;" class="table table-bordered">
+<table style="width:600px;margin-top:100px; " class="table table-bordered">
 
 <caption>
 <b>리뷰 등록</b>
@@ -101,45 +102,28 @@ String shopnum=request.getParameter("shopnum");
 <span class="glyphicon glyphicon-camera camera" style="color:#FF7BAC;cursor:pointer"></span>
 <input type="file" onchange="readURL(this)" name="photo" style="visibility: hidden" id="photo">
 </caption>
-<tr>
-<td>
-<%
-if("#showimg"==null){ /* 이 부분 예외 처리 전에 한 거 찾아보기  */
-	%>
-	<img src="images/logo2.png" id="showimg" style="width:200px;height:200px">
-	<%
-}else{
-	%>
-	<img id="showimg" src="" style="width:600px;height:200px;">
-	<%
-}
-%>
 
-</td>
-</tr>
 <tr>
-<td>
-<input type="text" name="writer" value="<%=myid %>" class="form-control" style="width:80px;">
+<td colspan="3"">
+<b style="display: inline;">닉네임: <input type="text" name="writer" value="<%=myid %>" class="form-control" style="width:80px; display: inline;" ></b>
 </td>
 </tr>
 
 <tr>
-<td>
-<textarea style="width:500px;height:100px" class="form-control"
-name="content" required="required"></textarea>
+<td colspan="3">
+<textarea style="width:600px;height:200px" class="form-control"
+name="content" required="required" placeholder="내용을 입력해주세요.">
+</textarea>
+   
+   <!-- 임시 이미지 보여지게 -->
+   <img id="showimg" src="images/blank.png" style="width:600px;height:200px;">
+   
 </td>
 </tr>
-
 <!-- 별점 -->
-<tr>
-<td>맛
+<tr style="height: 100px;">
+<td style="text-align: center;"   >맛
 <section id="rate" name="taste" class="rating" style="">
-  <!-- FIFTH STAR -->
-  <input type="radio" id="star_5" name="taste" value="5" />
-  <label for="star_5" title="Five">&#9733;</label>
-  <!-- FOURTH STAR -->
-  <input type="radio" id="star_4" name="taste" value="4" />
-  <label for="star_4" title="Four">&#9733;</label>
   <!-- THIRD STAR -->
   <input type="radio" id="star_3" name="taste" value="3" />
   <label for="star_3" title="Three">&#9733;</label>
@@ -151,17 +135,9 @@ name="content" required="required"></textarea>
   <label for="star_1" title="One">&#9733;</label>
 </section>
 </td>
-</tr>
 
-<tr>
-<td>배달
+<td style="text-align: center; ">배달
 <section id="rate" name="delivery" class="rating" style="">
-  <!-- FIFTH STAR -->
-  <input type="radio" id="star_10" name="delivery" value="5" />
-  <label for="star_10" title="Five">&#9733;</label>
-  <!-- FOURTH STAR -->
-  <input type="radio" id="star_9" name="delivery" value="4" />
-  <label for="star_9" title="Four">&#9733;</label>
   <!-- THIRD STAR -->
   <input type="radio" id="star_8" name="delivery" value="3" />
   <label for="star_8" title="Three">&#9733;</label>
@@ -173,17 +149,9 @@ name="content" required="required"></textarea>
   <label for="star_6" title="One">&#9733;</label>
 </section>
 </td>
-</tr>
 
-<tr>
-<td>향
+<td style="text-align: center;">향
 <section id="rate" name="smell" class="rating" style="">
-  <!-- FIFTH STAR -->
-  <input type="radio" id="star_15" name="smell" value="5" />
-  <label for="star_15" title="Five">&#9733;</label>
-  <!-- FOURTH STAR -->
-  <input type="radio" id="star_14" name="smell" value="4" />
-  <label for="star_14" title="Four">&#9733;</label>
   <!-- THIRD STAR -->
   <input type="radio" id="star_13" name="smell" value="3" />
   <label for="star_13" title="Three">&#9733;</label>
@@ -198,8 +166,8 @@ name="content" required="required"></textarea>
 </tr>
 
 <tr>
-<td>
-<button type="submit" class="btn btn-default" >등록</button>
+<td colspan="3" align="center">
+<button type="submit" class="btn btn-default sm" style="background-color:#FF7BAC;color:white;border:1px solid #FF7BAC;">등록</button>
 </td>
 </tr>
 </table>
