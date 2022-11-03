@@ -32,7 +32,7 @@ ShopDto dto =dao.getData(shopnum);
 		<form action="manager/product/updateaction.jsp?shopnum=<%=shopnum %>" method="post" enctype="multipart/form-data" style="margin-top: 150px;" >
 			<table class="table table-bordered" style="width: 600px;">
 				<caption>
-					<h3><b>상품 등록</b></h3>
+					<h3><b>상품 수정</b></h3>
 				</caption>
 				<br>
 				<input type="hidden" value="<%=shopnum%>" name="shopnum">

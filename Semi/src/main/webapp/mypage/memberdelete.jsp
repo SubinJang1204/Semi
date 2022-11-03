@@ -13,7 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 <body>
-	
+
 <%
 
     String num=request.getParameter("num");
@@ -27,5 +27,6 @@
 	response.sendRedirect("../index.jsp?main=login/loginform.jsp");
 
 %>
+
 </body>
 </html>

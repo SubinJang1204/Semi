@@ -453,7 +453,7 @@ $("#btncart").click(function(){
    //form태그의 모든 값 가져오기
    var formdata=$("#frm").serialize();
    
-   alert(formdata);
+   //alert(formdata);
    //alert(num);
    
    $.ajax({
@@ -477,7 +477,7 @@ $("#btnorder").click(function(){
 	   //form태그의 모든 값 가져오기
 	   var formdata=$("#frm").serialize();
 	   
-	   alert(formdata);
+	   //alert(formdata);
 	   //alert(num);
 	   
 	   $.ajax({

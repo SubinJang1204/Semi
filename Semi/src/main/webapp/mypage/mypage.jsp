@@ -10,16 +10,16 @@
 <%@page import="data.dto.MemberDto"%>
 <%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link
-	href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
-	rel="stylesheet">
+   href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+   rel="stylesheet">
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <style type="text/css">
 body{
@@ -42,27 +42,18 @@ cursor:pointer;
 </head>
 <body>
 <%
-
 String loginok=(String)session.getAttribute("loginok");
 String myid=(String)session.getAttribute("myid");
-
 MemberDao dao=new MemberDao();
-
 String num=dao.getNum(myid);
 String name=dao.getName(myid);
-
 String id = (String) session.getAttribute("myid");
 ShopDao sdao = new ShopDao();
 ShopDto sdto=sdao.getData(num);
-
 List<HashMap<String, String>> list = sdao.getCartList(id);
-
 DirectOrderDao ddao=new DirectOrderDao();
 DirectOrderDto ddto=ddao.getDatas(num);
-
 List<DirectOrderDto> alist=ddao.getOrderList(num);
-
-
 %>
 <div style="position:absolute;top:-50px;z-index:-10;width:1920px;height:100px;background-color:white;"></div>
 <center>
@@ -83,9 +74,9 @@ List<DirectOrderDto> alist=ddao.getOrderList(num);
 <hr>
 <p style="font-size:20px;color:#FF7BAC;"><b>회원 관리</b></p><br>
 <p style="font-size:17px;margin-top:-10px;" class="menuhover"><a href="index.jsp?main=mypage/
-	updateform.jsp?num=<%=num%>" style="text-decoration:none;">회원 정보 수정</a></p><br>
+   updateform.jsp?num=<%=num%>" style="text-decoration:none;">회원 정보 수정</a></p><br>
 <p style="font-size:17px;margin-top:-20px;" class="menuhover"><a href="mypage/
-	memberdelete.jsp?num=<%=num%>" style="text-decoration:none;">회원 탈퇴</a></p>
+   memberdelete.jsp?num=<%=num%>" style="text-decoration:none;">회원 탈퇴</a></p>
 </div>
 
 
@@ -98,28 +89,43 @@ List<DirectOrderDto> alist=ddao.getOrderList(num);
 
 <%
 if(alist.size()==0){
-	%>
-	<br><br>
-	<span>내역이 없습니다</span>
-	<%
-}
-else{
+   %>
+   <br><br>
+   <span>내역이 없습니다</span>
+   <%
+}else if(alist.size()>=4){
 for (int i = 0; i < 4; i++) {
-	DirectOrderDto map = alist.get(i);		
-		%>
-		
-		<div class="cart" style="margin-left:20px;width:150px;height:150px;display:inline-block;">
-		
-		<img src="images2/<%=map.getPhoto() %>" style="width:150px;height:150px;cursor:pointer"onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=map.getShopnum()%>'">
-		<b><%=map.getSangpum()%></b><br>&nbsp;<span class="glyphicon glyphicon-pencil" style="color:#FF7BAC;font-size:13px;cursor:pointer" onclick="location.href='index.jsp?main=teashop/reviewinsert.jsp?shopnum=<%=map.getShopnum()%>'">리뷰작성</span>
-		
-		</div>
+   DirectOrderDto map = alist.get(i);      
+      %>
+      
+      <div class="cart" style="margin-left:20px;width:150px;height:150px;display:inline-block;">
+      
+      <img src="images2/<%=map.getPhoto() %>" style="width:150px;height:150px;cursor:pointer"onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=map.getShopnum()%>'">
+      <b><%=map.getSangpum()%></b><br>&nbsp;<span class="glyphicon glyphicon-pencil" style="color:#FF7BAC;font-size:13px;cursor:pointer" onclick="location.href='index.jsp?main=teashop/reviewinsert.jsp?shopnum=<%=map.getShopnum()%>'">리뷰작성</span>
+      
+      </div>
+   
+      
+         <%
+      }
+}else if(alist.size()<4){ 
 	
-		
-			<%
-		}
+  for (int i = 0; i < alist.size(); i++) {
+   DirectOrderDto map = alist.get(i);      
+      %>
+      
+      <div class="cart" style="margin-left:20px;width:150px;height:150px;display:inline-block;">
+      
+      <img src="images2/<%=map.getPhoto() %>" style="width:150px;height:150px;cursor:pointer"onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=map.getShopnum()%>'">
+      <b><%=map.getSangpum()%></b><br>&nbsp;<span class="glyphicon glyphicon-pencil" style="color:#FF7BAC;font-size:13px;cursor:pointer" onclick="location.href='index.jsp?main=teashop/reviewinsert.jsp?shopnum=<%=map.getShopnum()%>'">리뷰작성</span>
+      
+      </div>
+   
+      
+         <%
+      }  
 }
-		%>
+      %>
 
 </div>
 <hr>
@@ -129,35 +135,60 @@ for (int i = 0; i < 4; i++) {
 
 <%
 if(list.size()==0){
-	%>
-	<br><br>
-	<span>내역이 없습니다</span>
-	<%
-}
-else{
+   %>
+   <br><br>
+   <span>내역이 없습니다</span>
+   <%
+}else if(list.size()>=4){
 int allmoney = 0;
 NumberFormat nf = NumberFormat.getCurrencyInstance();
 for (int i = 0; i < 4; i++) {
-	HashMap<String, String> map = list.get(i);
-	int cnt = Integer.parseInt(map.get("cnt"));
-			
-		%>
-		
-		<div class="cart" style="margin-left:20px;width:150px;height:150px;display:inline-block;">
-		
-		<img src="images2/<%=map.get("photo")%>" class="photo"
-						width="150" height="150" onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=map.get("shopnum")%>'" style="cursor:pointer">
-						<b><%=map.get("sangpum")%></b>
-						
-					</h4>
-		
-		
-		</div>
-	
-		<%
-		}
-}		
-		%>
+   HashMap<String, String> map = list.get(i);
+   int cnt = Integer.parseInt(map.get("cnt"));
+         
+      %>
+      
+      <div class="cart" style="margin-left:20px;width:150px;height:150px;display:inline-block;">
+      
+      <img src="images2/<%=map.get("photo")%>" class="photo"
+                  width="150" height="150" onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=map.get("shopnum")%>'" style="cursor:pointer">
+                  <b><%=map.get("sangpum")%></b>
+                  
+               </h4>
+      
+      
+      </div>
+   
+      <%
+      }
+}else if(list.size()<4){
+	int allmoney = 0;
+	NumberFormat nf = NumberFormat.getCurrencyInstance();
+
+  for (int i = 0; i < list.size(); i++) {
+	  HashMap<String, String> map = list.get(i);
+		int cnt = Integer.parseInt(map.get("cnt"));
+
+      %>
+      
+       <div class="cart" style="margin-left:20px;width:150px;height:150px;display:inline-block;">
+      
+      <img src="images2/<%=map.get("photo")%>" class="photo"
+                  width="150" height="150" onclick="location.href='index.jsp?main=teashop/shopdetail.jsp?shopnum=<%=map.get("shopnum")%>'" style="cursor:pointer">
+                  <b><%=map.get("sangpum")%></b>
+                  
+               </h4>
+      
+      
+      </div>
+   
+      
+         <%
+      }
+  
+}
+       
+      %>
 
 </div>
 

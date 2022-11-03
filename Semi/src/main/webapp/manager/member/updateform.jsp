@@ -99,7 +99,7 @@ String email2=st.nextToken();
 
 <center><caption><h3><b>회원 수정</b></h3></caption></center>
 <br>
-<table class="table table bordered" style="width:1000px;margin:0 auto">
+<table class="table table bordered" style="width:600px;margin:0 auto">
 
 <tr>
 <th width="100">성함</th>

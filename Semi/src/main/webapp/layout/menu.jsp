@@ -53,6 +53,9 @@ int cartSize=sdao.getCartList(myid).size();
   border:1px solid #FF7BAC;
   color:#FF7BAC;
   }
+  html{
+  scroll-behavior:smooth;
+  }
   </style>
 </head>
 <body>
@@ -126,5 +129,7 @@ if(loginok==null){
   </div>
 </nav>
 
+<div style="position:fixed;top:800px;left:1800px;"><a href="#" style="text-decoration:none;color:#FF7BAC;font-size:19px;"><b>TOP</b></a></div>
 
-</body></html>
+</body>
+</html>

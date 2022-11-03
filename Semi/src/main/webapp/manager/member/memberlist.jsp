@@ -30,7 +30,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 			
 			<tr>
 			
-			<th width='150'>회원번호</th>
+			<th width='170'>회원번호</th>
 			<th width='120'>성함</th>
 		<th width='120'>아이디</th>
 			<th width='600'>연락처</th>
